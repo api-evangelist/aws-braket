@@ -1,0 +1,105 @@
+openapi: 3.1.0
+info:
+  title: AWS Braket Tags API
+  description: >
+    Manage tags on Amazon Braket resources (quantum tasks, hybrid jobs, and
+    spending limits) for cost allocation, IAM ABAC, and organization. Tags are
+    propagated to AWS Cost Explorer and AWS Budgets and can be used to enforce
+    fine-grained IAM conditions on Braket resources.
+  version: 2019-09-01
+  contact:
+    name: AWS Support
+    url: https://aws.amazon.com/contact-us/
+
+servers:
+  - url: https://braket.us-east-1.amazonaws.com
+    description: US East (N. Virginia)
+  - url: https://braket.us-west-2.amazonaws.com
+    description: US West (Oregon)
+  - url: https://braket.eu-north-1.amazonaws.com
+    description: EU (Stockholm)
+
+security:
+  - SigV4: []
+
+tags:
+  - name: Tags
+    description: Tagging for Braket resources.
+
+paths:
+  /tags/{resourceArn}:
+    get:
+      summary: AWS Braket List Tags For Resource
+      description: List all tags attached to a Braket resource.
+      operationId: listTagsForResource
+      tags:
+        - Tags
+      parameters:
+        - name: resourceArn
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Tag list.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  tags:
+                    type: object
+                    additionalProperties: { type: string }
+    post:
+      summary: AWS Braket Tag A Resource
+      description: Add one or more tags to a Braket resource.
+      operationId: tagResource
+      tags:
+        - Tags
+      parameters:
+        - name: resourceArn
+          in: path
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [tags]
+              properties:
+                tags:
+                  type: object
+                  additionalProperties: { type: string }
+      responses:
+        '200':
+          description: Tags applied.
+    delete:
+      summary: AWS Braket Untag A Resource
+      description: Remove one or more tag keys from a Braket resource.
+      operationId: untagResource
+      tags:
+        - Tags
+      parameters:
+        - name: resourceArn
+          in: path
+          required: true
+          schema: { type: string }
+        - name: tagKeys
+          in: query
+          required: true
+          explode: true
+          schema:
+            type: array
+            items: { type: string }
+      responses:
+        '200':
+          description: Tags removed.
+
+components:
+  securitySchemes:
+    SigV4:
+      type: apiKey
+      name: Authorization
+      in: header

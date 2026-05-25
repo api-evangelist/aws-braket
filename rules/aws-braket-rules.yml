@@ -1,0 +1,65 @@
+extends:
+  - spectral:oas
+
+functions: []
+
+rules:
+  aws-braket-info-contact:
+    description: Every Braket OpenAPI spec must declare the AWS Support contact.
+    given: $.info.contact
+    severity: error
+    then:
+      - field: name
+        function: truthy
+      - field: url
+        function: truthy
+
+  aws-braket-server-https:
+    description: All Braket service endpoints must be https.
+    given: $.servers[*].url
+    severity: error
+    then:
+      function: pattern
+      functionOptions:
+        match: '^https://'
+
+  aws-braket-server-hostname:
+    description: Braket endpoints must use the braket.{region}.amazonaws.com hostname.
+    given: $.servers[*].url
+    severity: warn
+    then:
+      function: pattern
+      functionOptions:
+        match: 'braket\.(us|eu|ap)-[a-z0-9\-]+\.amazonaws\.com'
+
+  aws-braket-summary-title-case:
+    description: Operation summaries must be Title Case and prefixed with "AWS Braket".
+    given: $.paths[*][get,post,put,delete,patch].summary
+    severity: warn
+    then:
+      function: pattern
+      functionOptions:
+        match: '^AWS Braket [A-Z]'
+
+  aws-braket-operation-id-camel:
+    description: operationId must be camelCase.
+    given: $.paths[*][get,post,put,delete,patch].operationId
+    severity: error
+    then:
+      function: pattern
+      functionOptions:
+        match: '^[a-z][a-zA-Z0-9]*$'
+
+  aws-braket-sigv4-security:
+    description: Braket APIs must declare SigV4 security at the root.
+    given: $.security
+    severity: error
+    then:
+      function: truthy
+
+  aws-braket-tags-defined:
+    description: Each path-level tag must be defined at the spec root.
+    given: $.paths[*][get,post,put,delete,patch].tags[*]
+    severity: warn
+    then:
+      function: truthy

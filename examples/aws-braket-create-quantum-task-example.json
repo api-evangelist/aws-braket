@@ -1,0 +1,24 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://braket.us-east-1.amazonaws.com/quantum-task",
+    "body": {
+      "action": "{\"braketSchemaHeader\": {\"name\": \"braket.ir.openqasm.program\", \"version\": \"1\"}, \"source\": \"OPENQASM 3; qubit[2] q; bit[2] c; h q[0]; cnot q[0], q[1]; c = measure q;\"}",
+      "clientToken": "bell-state-2026-05-25-01",
+      "deviceArn": "arn:aws:braket:us-east-1::device/qpu/ionq/Forte-1",
+      "shots": 1000,
+      "outputS3Bucket": "my-braket-results-bucket",
+      "outputS3KeyPrefix": "bell-state/",
+      "tags": {
+        "project": "bell-state-demo",
+        "owner": "kin"
+      }
+    }
+  },
+  "response": {
+    "status": 201,
+    "body": {
+      "quantumTaskArn": "arn:aws:braket:us-east-1:123456789012:quantum-task/e7e3a3b2-1c4f-4a6f-9c10-bell-demo"
+    }
+  }
+}

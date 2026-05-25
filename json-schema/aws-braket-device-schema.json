@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.com/schemas/aws-braket/aws-braket-device-schema.json",
+  "title": "AWS Braket Device",
+  "description": "Schema for an Amazon Braket device (QPU or simulator) as returned by GetDevice and SearchDevices.",
+  "type": "object",
+  "required": ["deviceArn", "deviceName", "providerName", "deviceStatus", "deviceType"],
+  "properties": {
+    "deviceArn": {
+      "type": "string",
+      "description": "ARN of the device, case sensitive.",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "deviceName": { "type": "string" },
+    "providerName": {
+      "type": "string",
+      "description": "Quantum hardware provider.",
+      "enum": ["AQT", "IonQ", "IQM", "QuEra", "Rigetti", "Amazon Braket"]
+    },
+    "deviceStatus": {
+      "type": "string",
+      "enum": ["ONLINE", "OFFLINE", "RETIRED"]
+    },
+    "deviceType": {
+      "type": "string",
+      "enum": ["QPU", "SIMULATOR"]
+    },
+    "deviceCapabilities": {
+      "type": "string",
+      "description": "JSON document describing supported gates, qubit topology, paradigm, native gate set, and calibration."
+    },
+    "deviceQueueInfo": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "queue": { "type": "string", "enum": ["QUANTUM_TASKS_QUEUE", "JOBS_QUEUE"] },
+          "queuePriority": { "type": "string", "enum": ["Normal", "Priority"] },
+          "queueSize": { "type": "string" }
+        }
+      }
+    }
+  }
+}

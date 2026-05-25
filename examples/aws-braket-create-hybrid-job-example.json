@@ -1,0 +1,50 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://braket.us-east-1.amazonaws.com/job",
+    "body": {
+      "jobName": "qaoa-maxcut-2026-05-25",
+      "clientToken": "qaoa-maxcut-2026-05-25-01",
+      "roleArn": "arn:aws:iam::123456789012:role/service-role/AmazonBraketJobsExecutionRole",
+      "algorithmSpecification": {
+        "containerImage": {
+          "uri": "292282985366.dkr.ecr.us-east-1.amazonaws.com/amazon-braket-base-jobs:1.0-cpu-py39-ubuntu22.04"
+        },
+        "scriptModeConfig": {
+          "compressionType": "GZIP",
+          "entryPoint": "qaoa_maxcut:main",
+          "s3Uri": "s3://my-braket-bucket/algorithms/qaoa-maxcut.tar.gz"
+        }
+      },
+      "deviceConfig": {
+        "device": "arn:aws:braket:::device/quantum-simulator/amazon/sv1"
+      },
+      "instanceConfig": {
+        "instanceType": "ml.m5.xlarge",
+        "instanceCount": 1,
+        "volumeSizeInGb": 30
+      },
+      "outputDataConfig": {
+        "s3Path": "s3://my-braket-bucket/jobs-output/"
+      },
+      "stoppingCondition": {
+        "maxRuntimeInSeconds": 3600
+      },
+      "hyperParameters": {
+        "p": "2",
+        "shots": "1000",
+        "max_iter": "50"
+      },
+      "tags": {
+        "project": "qaoa-maxcut",
+        "costCenter": "research-quantum"
+      }
+    }
+  },
+  "response": {
+    "status": 201,
+    "body": {
+      "jobArn": "arn:aws:braket:us-east-1:123456789012:job/qaoa-maxcut-2026-05-25"
+    }
+  }
+}

@@ -1,0 +1,123 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.com/schemas/aws-braket/aws-braket-quantum-task-schema.json",
+  "title": "AWS Braket Quantum Task",
+  "description": "Schema for the Amazon Braket Quantum Task resource — the request body for CreateQuantumTask and the response shape returned by GetQuantumTask.",
+  "type": "object",
+  "definitions": {
+    "CreateQuantumTaskRequest": {
+      "type": "object",
+      "description": "Request body for POST /quantum-task.",
+      "required": ["action", "clientToken", "deviceArn", "outputS3Bucket", "outputS3KeyPrefix", "shots"],
+      "properties": {
+        "action": {
+          "type": "string",
+          "description": "Serialized quantum program. Typically a JSON document conforming to braket.ir.openqasm.program, braket.ir.openqasm.program_set, or braket.ir.ahs.program."
+        },
+        "clientToken": {
+          "type": "string",
+          "description": "Idempotency token, unique per task.",
+          "minLength": 1,
+          "maxLength": 64
+        },
+        "deviceArn": {
+          "type": "string",
+          "description": "ARN of the target QPU or simulator device. ARNs are case sensitive.",
+          "minLength": 1,
+          "maxLength": 256,
+          "examples": [
+            "arn:aws:braket:::device/quantum-simulator/amazon/sv1",
+            "arn:aws:braket:us-east-1::device/qpu/ionq/Forte-1",
+            "arn:aws:braket:eu-north-1::device/qpu/iqm/Garnet",
+            "arn:aws:braket:us-west-1::device/qpu/rigetti/Ankaa-3"
+          ]
+        },
+        "deviceParameters": {
+          "type": "string",
+          "description": "JSON-encoded provider-specific device parameters.",
+          "maxLength": 48000
+        },
+        "shots": {
+          "type": "integer",
+          "description": "Number of measurement shots.",
+          "minimum": 0
+        },
+        "outputS3Bucket": { "type": "string", "minLength": 3, "maxLength": 63 },
+        "outputS3KeyPrefix": { "type": "string", "minLength": 1, "maxLength": 1024 },
+        "jobToken": { "type": "string", "minLength": 1, "maxLength": 128 },
+        "associations": {
+          "type": "array",
+          "maxItems": 1,
+          "items": {
+            "type": "object",
+            "properties": {
+              "arn": { "type": "string" },
+              "type": { "type": "string", "enum": ["RESERVATION_TIME_WINDOW_ARN"] }
+            }
+          }
+        },
+        "experimentalCapabilities": {
+          "type": "object",
+          "description": "Union of experimental capabilities (e.g. pulse-level access)."
+        },
+        "tags": {
+          "type": "object",
+          "additionalProperties": { "type": "string" }
+        }
+      }
+    },
+    "QuantumTask": {
+      "type": "object",
+      "description": "Quantum task resource returned by GetQuantumTask.",
+      "required": ["quantumTaskArn", "status", "deviceArn"],
+      "properties": {
+        "quantumTaskArn": { "type": "string" },
+        "status": {
+          "type": "string",
+          "enum": ["CREATED", "QUEUED", "RUNNING", "COMPLETED", "FAILED", "CANCELLING", "CANCELLED"]
+        },
+        "deviceArn": { "type": "string" },
+        "deviceParameters": { "type": "string" },
+        "shots": { "type": "integer" },
+        "outputS3Bucket": { "type": "string" },
+        "outputS3Directory": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "endedAt": { "type": "string", "format": "date-time" },
+        "failureReason": { "type": "string" },
+        "jobArn": { "type": "string" },
+        "queueInfo": {
+          "type": "object",
+          "properties": {
+            "queue": { "type": "string", "enum": ["QUANTUM_TASKS_QUEUE", "JOBS_QUEUE"] },
+            "position": { "type": "string" }
+          }
+        },
+        "tags": {
+          "type": "object",
+          "additionalProperties": { "type": "string" }
+        }
+      }
+    },
+    "OpenQasmAction": {
+      "type": "object",
+      "description": "Braket IR for an OpenQASM 3 program (used as the 'action' field of CreateQuantumTask).",
+      "required": ["braketSchemaHeader", "source"],
+      "properties": {
+        "braketSchemaHeader": {
+          "type": "object",
+          "required": ["name", "version"],
+          "properties": {
+            "name": { "type": "string", "const": "braket.ir.openqasm.program" },
+            "version": { "type": "string", "const": "1" }
+          }
+        },
+        "source": { "type": "string", "description": "OpenQASM 3 source code." },
+        "inputs": {
+          "type": "object",
+          "additionalProperties": true,
+          "description": "Named OpenQASM input parameter values."
+        }
+      }
+    }
+  }
+}

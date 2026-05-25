@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.com/schemas/aws-braket/aws-braket-hybrid-job-schema.json",
+  "title": "AWS Braket Hybrid Job",
+  "description": "Schema for an Amazon Braket hybrid job — a containerized algorithm executing classical iterations against priority QPU access.",
+  "type": "object",
+  "required": ["jobArn", "jobName", "status", "deviceConfig", "instanceConfig", "roleArn"],
+  "properties": {
+    "jobArn": {
+      "type": "string",
+      "pattern": "^arn:aws[a-z\\-]*:braket:[a-z0-9\\-]+:[0-9]{12}:job/.*$"
+    },
+    "jobName": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,50}$",
+      "minLength": 1,
+      "maxLength": 50
+    },
+    "status": {
+      "type": "string",
+      "enum": ["QUEUED", "RUNNING", "COMPLETED", "FAILED", "CANCELLING", "CANCELLED"]
+    },
+    "deviceConfig": {
+      "type": "object",
+      "required": ["device"],
+      "properties": {
+        "device": {
+          "type": "string",
+          "description": "Device ARN for the QPU or simulator."
+        }
+      }
+    },
+    "instanceConfig": {
+      "type": "object",
+      "required": ["instanceType"],
+      "properties": {
+        "instanceType": {
+          "type": "string",
+          "description": "SageMaker-style ML instance type for the classical container."
+        },
+        "instanceCount": { "type": "integer", "minimum": 1 },
+        "volumeSizeInGb": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "algorithmSpecification": {
+      "type": "object",
+      "properties": {
+        "containerImage": {
+          "type": "object",
+          "properties": { "uri": { "type": "string" } }
+        },
+        "scriptModeConfig": {
+          "type": "object",
+          "properties": {
+            "compressionType": { "type": "string", "enum": ["NONE", "GZIP"] },
+            "entryPoint": { "type": "string" },
+            "s3Uri": { "type": "string" }
+          }
+        }
+      }
+    },
+    "hyperParameters": {
+      "type": "object",
+      "additionalProperties": { "type": "string" }
+    },
+    "checkpointConfig": {
+      "type": "object",
+      "properties": {
+        "localPath": { "type": "string" },
+        "s3Uri": { "type": "string" }
+      }
+    },
+    "outputDataConfig": {
+      "type": "object",
+      "properties": {
+        "kmsKeyId": { "type": "string" },
+        "s3Path": { "type": "string" }
+      }
+    },
+    "stoppingCondition": {
+      "type": "object",
+      "properties": {
+        "maxRuntimeInSeconds": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "roleArn": {
+      "type": "string",
+      "pattern": "^arn:aws[a-z\\-]*:iam::\\d{12}:role/?[a-zA-Z_0-9+=,.@\\-_/]+$"
+    },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "startedAt": { "type": "string", "format": "date-time" },
+    "endedAt": { "type": "string", "format": "date-time" },
+    "billableDuration": { "type": "integer", "description": "Billable seconds of instance time." },
+    "failureReason": { "type": "string" },
+    "queueInfo": {
+      "type": "object",
+      "properties": {
+        "queue": { "type": "string" },
+        "position": { "type": "string" }
+      }
+    },
+    "tags": {
+      "type": "object",
+      "additionalProperties": { "type": "string" }
+    }
+  }
+}

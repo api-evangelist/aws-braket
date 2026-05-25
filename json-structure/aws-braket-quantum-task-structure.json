@@ -1,0 +1,30 @@
+{
+  "$id": "https://api-evangelist.com/structures/aws-braket/aws-braket-quantum-task-structure.json",
+  "title": "AWS Braket Quantum Task Structure",
+  "description": "Structural map of the Amazon Braket Quantum Task entity — its request and response shapes plus the OpenQASM 3 action document embedded in CreateQuantumTask.",
+  "entity": "QuantumTask",
+  "primaryKey": "quantumTaskArn",
+  "fields": [
+    { "name": "quantumTaskArn", "type": "string", "role": "identifier", "description": "AWS ARN of the task." },
+    { "name": "status", "type": "enum", "values": ["CREATED", "QUEUED", "RUNNING", "COMPLETED", "FAILED", "CANCELLING", "CANCELLED"], "description": "Lifecycle state." },
+    { "name": "deviceArn", "type": "string", "role": "foreign", "links": "Device.deviceArn", "description": "Target QPU or simulator." },
+    { "name": "shots", "type": "integer", "description": "Measurement-shot count." },
+    { "name": "action", "type": "string", "encoding": "json", "description": "Serialized braket.ir.openqasm.program or braket.ir.ahs.program document." },
+    { "name": "deviceParameters", "type": "string", "encoding": "json", "description": "Provider-specific device parameters." },
+    { "name": "outputS3Bucket", "type": "string", "description": "S3 bucket for result files." },
+    { "name": "outputS3KeyPrefix", "type": "string", "description": "S3 key prefix for result files." },
+    { "name": "jobToken", "type": "string", "role": "foreign", "links": "HybridJob.jobArn", "description": "Optional parent hybrid-job association." },
+    { "name": "createdAt", "type": "datetime" },
+    { "name": "endedAt", "type": "datetime" },
+    { "name": "failureReason", "type": "string" },
+    { "name": "queueInfo", "type": "object", "fields": [
+      { "name": "queue", "type": "enum", "values": ["QUANTUM_TASKS_QUEUE", "JOBS_QUEUE"] },
+      { "name": "position", "type": "string" }
+    ]},
+    { "name": "tags", "type": "map", "keyType": "string", "valueType": "string" }
+  ],
+  "relationships": [
+    { "from": "QuantumTask.deviceArn", "to": "Device.deviceArn", "type": "many-to-one" },
+    { "from": "QuantumTask.jobToken", "to": "HybridJob.jobArn", "type": "many-to-one", "optional": true }
+  ]
+}

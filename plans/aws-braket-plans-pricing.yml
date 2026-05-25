@@ -1,0 +1,199 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: AWS Braket
+providerId: aws-braket
+created: '2026-05-25'
+modified: '2026-05-25'
+reconciled: true
+tags:
+  - Quantum Computing
+  - AWS
+  - Usage-Based
+description: Reconciled Amazon Braket pricing for on-demand quantum task execution, on-demand simulators, hybrid jobs, and Braket Direct reservations. Token unit is the "shot" for QPUs and the "minute" for on-demand simulators.
+sources:
+  - https://aws.amazon.com/braket/pricing/
+  - https://docs.aws.amazon.com/braket/latest/developerguide/braket-pricing.html
+plans:
+  - id: aws-braket-on-demand-qpu
+    name: On-Demand QPU Tasks
+    type: usage-based
+    description: Pay per task and per shot when submitting quantum tasks to a QPU device. $0.30 per-task fee applies to every QPU device.
+    entries:
+      - label: Per-task fee (all QPUs)
+        name: per_task_fee
+        type: metered
+        metric: task
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: '0.30'
+      - label: AQT IBEX-Q1 per-shot
+        name: aqt_ibex_q1_per_shot
+        type: metered
+        metric: shot
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: '0.02350'
+      - label: IonQ Forte per-shot
+        name: ionq_forte_per_shot
+        type: metered
+        metric: shot
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: '0.08000'
+      - label: IQM Emerald per-shot
+        name: iqm_emerald_per_shot
+        type: metered
+        metric: shot
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: '0.00160'
+      - label: IQM Garnet per-shot
+        name: iqm_garnet_per_shot
+        type: metered
+        metric: shot
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: '0.00145'
+      - label: QuEra Aquila per-shot
+        name: quera_aquila_per_shot
+        type: metered
+        metric: shot
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: '0.01000'
+      - label: Rigetti Cepheus per-shot
+        name: rigetti_cepheus_per_shot
+        type: metered
+        metric: shot
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: '0.000425'
+
+  - id: aws-braket-on-demand-simulators
+    name: On-Demand Simulators
+    type: usage-based
+    description: Cloud-managed quantum simulators billed per minute of simulation time. Minimum billing duration is 3 seconds per task.
+    entries:
+      - label: SV1 (state vector) per-minute
+        name: sv1_per_minute
+        type: metered
+        metric: minute
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: '0.075'
+      - label: DM1 (density matrix) per-minute
+        name: dm1_per_minute
+        type: metered
+        metric: minute
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: '0.075'
+      - label: TN1 (tensor network) per-minute
+        name: tn1_per_minute
+        type: metered
+        metric: minute
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: '0.275'
+
+  - id: aws-braket-hybrid-jobs
+    name: Hybrid Jobs (Classical Instances)
+    type: usage-based
+    description: Container-based classical orchestrator for hybrid quantum algorithms. Default instance type ml.m5.xlarge. Customer pays the listed ML instance rate plus any underlying QPU/simulator task charges.
+    entries:
+      - label: ml.m5.xlarge instance (default)
+        name: ml_m5_xlarge_per_hour
+        type: metered
+        metric: hour
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: '0.23'
+      - label: ml.p3.8xlarge GPU instance
+        name: ml_p3_8xlarge_per_hour
+        type: metered
+        metric: hour
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: '14.688'
+
+  - id: aws-braket-direct-reservations
+    name: Braket Direct Reservations
+    type: reservation
+    description: Dedicated QPU time block at a fixed hourly rate, providing exclusive access to a hardware vendor's machine.
+    entries:
+      - label: AQT IBEX-Q1 reservation
+        name: aqt_ibex_q1_reservation
+        type: reservation
+        metric: hour
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: '4800.00'
+      - label: IonQ Forte reservation
+        name: ionq_forte_reservation
+        type: reservation
+        metric: hour
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: '7000.00'
+      - label: IQM Emerald reservation
+        name: iqm_emerald_reservation
+        type: reservation
+        metric: hour
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: '4000.00'
+      - label: IQM Garnet reservation
+        name: iqm_garnet_reservation
+        type: reservation
+        metric: hour
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: '3000.00'
+      - label: QuEra Aquila reservation
+        name: quera_aquila_reservation
+        type: reservation
+        metric: hour
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: '2500.00'
+      - label: Rigetti Cepheus reservation
+        name: rigetti_cepheus_reservation
+        type: reservation
+        metric: hour
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: '4100.00'
+
+  - id: aws-braket-free-tier
+    name: Braket Free Tier
+    type: free
+    description: 1 hour of included on-demand simulator time per month for the first 12 months of using Amazon Braket. Does not include QPU access.
+    entries:
+      - label: Free simulator hour
+        name: free_simulator_hour
+        type: metered
+        metric: hour
+        limit: 1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'

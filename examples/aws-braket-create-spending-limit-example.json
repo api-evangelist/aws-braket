@@ -1,0 +1,25 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://braket.us-east-1.amazonaws.com/spending-limit",
+    "body": {
+      "deviceArn": "arn:aws:braket:us-east-1::device/qpu/ionq/Forte-1",
+      "spendingLimit": "1000.00",
+      "timePeriod": {
+        "start": "2026-05-01T00:00:00Z",
+        "end": "2026-06-01T00:00:00Z"
+      },
+      "clientToken": "sl-ionq-forte1-may2026",
+      "tags": {
+        "owner": "research-team",
+        "costCenter": "RD-Quantum-01"
+      }
+    }
+  },
+  "response": {
+    "status": 201,
+    "body": {
+      "spendingLimitArn": "arn:aws:braket:us-east-1:123456789012:spending-limit/sl-ionq-forte1-may2026"
+    }
+  }
+}

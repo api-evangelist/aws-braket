@@ -1,0 +1,66 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "@vocab": "https://schema.org/",
+    "braket": "https://braket.amazonaws.com/v1/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+
+    "QuantumTask": {
+      "@id": "braket:QuantumTask",
+      "@context": {
+        "quantumTaskArn": { "@id": "braket:QuantumTask/quantumTaskArn", "@type": "xsd:string" },
+        "status": { "@id": "braket:QuantumTask/status", "@type": "xsd:string" },
+        "deviceArn": { "@id": "braket:QuantumTask/deviceArn", "@type": "xsd:string" },
+        "deviceParameters": { "@id": "braket:QuantumTask/deviceParameters", "@type": "xsd:string" },
+        "shots": { "@id": "braket:QuantumTask/shots", "@type": "xsd:integer" },
+        "outputS3Bucket": { "@id": "braket:QuantumTask/outputS3Bucket", "@type": "xsd:string" },
+        "outputS3Directory": { "@id": "braket:QuantumTask/outputS3Directory", "@type": "xsd:string" },
+        "createdAt": { "@id": "braket:QuantumTask/createdAt", "@type": "xsd:dateTime" },
+        "endedAt": { "@id": "braket:QuantumTask/endedAt", "@type": "xsd:dateTime" },
+        "failureReason": { "@id": "braket:QuantumTask/failureReason", "@type": "xsd:string" },
+        "jobArn": { "@id": "braket:QuantumTask/jobArn", "@type": "xsd:string" }
+      }
+    },
+
+    "Device": {
+      "@id": "braket:Device",
+      "@context": {
+        "deviceArn": { "@id": "braket:Device/deviceArn", "@type": "xsd:string" },
+        "deviceName": { "@id": "braket:Device/deviceName", "@type": "xsd:string" },
+        "providerName": { "@id": "braket:Device/providerName", "@type": "xsd:string" },
+        "deviceStatus": { "@id": "braket:Device/deviceStatus", "@type": "xsd:string" },
+        "deviceType": { "@id": "braket:Device/deviceType", "@type": "xsd:string" },
+        "deviceCapabilities": { "@id": "braket:Device/deviceCapabilities", "@type": "xsd:string" }
+      }
+    },
+
+    "HybridJob": {
+      "@id": "braket:HybridJob",
+      "@context": {
+        "jobArn": { "@id": "braket:HybridJob/jobArn", "@type": "xsd:string" },
+        "jobName": { "@id": "braket:HybridJob/jobName", "@type": "xsd:string" },
+        "status": { "@id": "braket:HybridJob/status", "@type": "xsd:string" },
+        "device": { "@id": "braket:HybridJob/device", "@type": "xsd:string" },
+        "instanceType": { "@id": "braket:HybridJob/instanceType", "@type": "xsd:string" },
+        "createdAt": { "@id": "braket:HybridJob/createdAt", "@type": "xsd:dateTime" },
+        "startedAt": { "@id": "braket:HybridJob/startedAt", "@type": "xsd:dateTime" },
+        "endedAt": { "@id": "braket:HybridJob/endedAt", "@type": "xsd:dateTime" },
+        "billableDuration": { "@id": "braket:HybridJob/billableDuration", "@type": "xsd:integer" }
+      }
+    },
+
+    "SpendingLimit": {
+      "@id": "braket:SpendingLimit",
+      "@context": {
+        "spendingLimitArn": { "@id": "braket:SpendingLimit/spendingLimitArn", "@type": "xsd:string" },
+        "deviceArn": { "@id": "braket:SpendingLimit/deviceArn", "@type": "xsd:string" },
+        "spendingLimit": { "@id": "braket:SpendingLimit/spendingLimit", "@type": "xsd:decimal" },
+        "currentSpend": { "@id": "braket:SpendingLimit/currentSpend", "@type": "xsd:decimal" },
+        "queuedSpend": { "@id": "braket:SpendingLimit/queuedSpend", "@type": "xsd:decimal" },
+        "remainingBudget": { "@id": "braket:SpendingLimit/remainingBudget", "@type": "xsd:decimal" }
+      }
+    }
+  }
+}

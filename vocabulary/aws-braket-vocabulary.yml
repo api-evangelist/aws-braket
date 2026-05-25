@@ -1,0 +1,133 @@
+name: AWS Braket Vocabulary
+description: Canonical operational and capability vocabulary for the Amazon Braket quantum computing service. Spans device taxonomy, task lifecycle, hybrid job orchestration, cost controls, and provider integrations.
+provider: AWS Braket
+providerId: aws-braket
+created: '2026-05-25'
+modified: '2026-05-25'
+
+dimensions:
+  - name: Service Type
+    description: The Braket service family.
+    terms:
+      - id: quantum-task
+        label: Quantum Task
+        description: A single execution of a quantum program (OpenQASM 3, ProgramSet, or AHS) on a device.
+      - id: hybrid-job
+        label: Hybrid Job
+        description: A containerized algorithm orchestrating iterative classical + quantum execution.
+      - id: managed-notebook
+        label: Managed Notebook
+        description: A managed Jupyter environment for Braket development.
+
+  - name: Device Category
+    description: Categories of compute targets exposed via the Devices API.
+    terms:
+      - id: qpu
+        label: QPU
+        description: Physical quantum processing unit.
+      - id: on-demand-simulator
+        label: On-Demand Simulator
+        description: AWS-managed cloud simulator (SV1, DM1, TN1).
+      - id: local-simulator
+        label: Local Simulator
+        description: SDK-side simulator (braket_sv, braket_dm, braket_ahs).
+      - id: embedded-simulator
+        label: Embedded Simulator
+        description: Simulator that runs inside a hybrid-job container.
+
+  - name: Hardware Provider
+    description: Third-party providers delivering QPU access through Braket.
+    terms:
+      - id: aqt
+        label: AQT
+        description: Ion-trap QPUs (IBEX-Q1).
+      - id: ionq
+        label: IonQ
+        description: Trapped-ion QPUs (Forte-1, Forte-Enterprise-1).
+      - id: iqm
+        label: IQM
+        description: Superconducting QPUs (Garnet, Emerald).
+      - id: quera
+        label: QuEra
+        description: Neutral-atom Analog Hamiltonian Simulator (Aquila).
+      - id: rigetti
+        label: Rigetti
+        description: Superconducting QPUs (Ankaa-3, Cepheus-1-108Q).
+
+  - name: Computing Paradigm
+    description: How a device represents quantum computation.
+    terms:
+      - id: gate-based
+        label: Gate-Based
+        description: Discrete-gate (digital) quantum circuit model.
+      - id: analog-hamiltonian-simulation
+        label: Analog Hamiltonian Simulation
+        description: Rydberg-array continuous-time evolution.
+
+  - name: Task Lifecycle
+    description: State transitions for a quantum task.
+    terms:
+      - id: created
+        label: CREATED
+      - id: queued
+        label: QUEUED
+      - id: running
+        label: RUNNING
+      - id: completed
+        label: COMPLETED
+      - id: failed
+        label: FAILED
+      - id: cancelling
+        label: CANCELLING
+      - id: cancelled
+        label: CANCELLED
+
+  - name: Cost Control
+    description: Mechanisms for managing Braket spend.
+    terms:
+      - id: spending-limit
+        label: Spending Limit
+        description: Opt-in per-device QPU cost ceiling enforced at task creation.
+      - id: cost-tracker
+        label: Cost Tracker
+        description: SDK-side near-real-time spend estimator.
+      - id: braket-direct-reservation
+        label: Braket Direct Reservation
+        description: Dedicated QPU time block at a fixed hourly rate.
+      - id: aws-budgets
+        label: AWS Budgets
+        description: Cross-service budget alerts.
+
+  - name: Programming Surface
+    description: Code-level interfaces for Braket.
+    terms:
+      - id: braket-python-sdk
+        label: Amazon Braket Python SDK
+      - id: aws-cli
+        label: AWS CLI
+      - id: boto3
+        label: AWS SDK for Python (Boto3)
+      - id: pennylane-plugin
+        label: PennyLane Plugin
+      - id: qiskit-braket-provider
+        label: Qiskit Braket Provider
+      - id: braket-julia
+        label: Braket.jl
+      - id: autoqasm
+        label: AutoQASM
+      - id: openqasm-3
+        label: OpenQASM 3.0
+
+  - name: Region
+    description: AWS regions where Braket is available.
+    terms:
+      - id: us-east-1
+        label: US East (N. Virginia)
+      - id: us-west-1
+        label: US West (N. California)
+      - id: us-west-2
+        label: US West (Oregon)
+      - id: eu-north-1
+        label: EU North (Stockholm)
+      - id: eu-west-2
+        label: EU West (London)

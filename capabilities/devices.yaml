@@ -1,0 +1,124 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: AWS Braket Devices API — Devices
+  description: 'AWS Braket Devices API — Devices. 2 operations. Lead operation: AWS Braket Get A Device. Self-contained
+    Naftiko capability covering quantum device discovery and capability retrieval.'
+  tags:
+  - AWS Braket
+  - Quantum
+  - Devices
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    AWS_ACCESS_KEY_ID: AWS_ACCESS_KEY_ID
+    AWS_SECRET_ACCESS_KEY: AWS_SECRET_ACCESS_KEY
+    AWS_REGION: AWS_REGION
+capability:
+  consumes:
+  - type: http
+    namespace: devices
+    baseUri: https://braket.{{env.AWS_REGION}}.amazonaws.com
+    description: AWS Braket Devices API business capability.
+    resources:
+    - name: device-by-arn
+      path: /device/{deviceArn}
+      operations:
+      - name: getdevice
+        method: GET
+        description: AWS Braket Get A Device
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: deviceArn
+          in: path
+          type: string
+          required: true
+    - name: devices
+      path: /devices
+      operations:
+      - name: searchdevices
+        method: POST
+        description: AWS Braket Search Devices
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          required: true
+    authentication:
+      type: awssigv4
+      region: '{{env.AWS_REGION}}'
+      service: braket
+      accessKeyId: '{{env.AWS_ACCESS_KEY_ID}}'
+      secretAccessKey: '{{env.AWS_SECRET_ACCESS_KEY}}'
+  exposes:
+  - type: rest
+    namespace: devices-rest
+    port: 8080
+    description: REST adapter for AWS Braket Devices.
+    resources:
+    - path: /v1/devices/{deviceArn}
+      name: device-by-arn
+      description: REST surface for a single device.
+      operations:
+      - method: GET
+        name: getdevice
+        description: AWS Braket Get A Device
+        call: devices.getdevice
+        with:
+          deviceArn: rest.path.deviceArn
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/devices
+      name: devices
+      description: REST surface for device search.
+      operations:
+      - method: POST
+        name: searchdevices
+        description: AWS Braket Search Devices
+        call: devices.searchdevices
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: devices-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for AWS Braket Devices.
+    tools:
+    - name: aws-braket-get-device
+      description: AWS Braket Get A Device
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: devices.getdevice
+      with:
+        deviceArn: tools.deviceArn
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: aws-braket-search-devices
+      description: AWS Braket Search Devices
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: devices.searchdevices
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

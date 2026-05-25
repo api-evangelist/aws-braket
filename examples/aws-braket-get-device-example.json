@@ -1,0 +1,22 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://braket.us-east-1.amazonaws.com/device/arn:aws:braket:us-east-1::device/qpu/ionq/Forte-1"
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "deviceArn": "arn:aws:braket:us-east-1::device/qpu/ionq/Forte-1",
+      "deviceName": "Forte-1",
+      "providerName": "IonQ",
+      "deviceStatus": "ONLINE",
+      "deviceType": "QPU",
+      "deviceQueueInfo": [
+        { "queue": "QUANTUM_TASKS_QUEUE", "queuePriority": "Normal", "queueSize": "12" },
+        { "queue": "QUANTUM_TASKS_QUEUE", "queuePriority": "Priority", "queueSize": "2" },
+        { "queue": "JOBS_QUEUE", "queuePriority": "Normal", "queueSize": "1" }
+      ],
+      "deviceCapabilities": "{\"braketSchemaHeader\":{\"name\":\"braket.device_schema.ionq.ionq_device_capabilities\",\"version\":\"1\"},\"action\":{\"braket.ir.openqasm.program\":{\"actionType\":\"braket.ir.openqasm.program\",\"version\":[\"1\"]}},\"paradigm\":{\"qubitCount\":36,\"nativeGateSet\":[\"ms\",\"gpi\",\"gpi2\"],\"connectivity\":{\"fullyConnected\":true}}}"
+    }
+  }
+}

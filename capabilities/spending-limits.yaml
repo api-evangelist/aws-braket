@@ -1,0 +1,153 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: AWS Braket Spending Limits API — Spending Limits
+  description: 'AWS Braket Spending Limits API — Spending Limits. 4 operations. Lead operation: AWS Braket Create A
+    Spending Limit. Self-contained Naftiko capability for setting opt-in per-device cost ceilings that gate
+    quantum task creation.'
+  tags:
+  - AWS Braket
+  - Quantum
+  - Spending Limits
+  - FinOps
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    AWS_ACCESS_KEY_ID: AWS_ACCESS_KEY_ID
+    AWS_SECRET_ACCESS_KEY: AWS_SECRET_ACCESS_KEY
+    AWS_REGION: AWS_REGION
+capability:
+  consumes:
+  - type: http
+    namespace: spending-limits
+    baseUri: https://braket.{{env.AWS_REGION}}.amazonaws.com
+    description: AWS Braket Spending Limits API business capability.
+    resources:
+    - name: spending-limit
+      path: /spending-limit
+      operations:
+      - name: createspendinglimit
+        method: POST
+        description: AWS Braket Create A Spending Limit
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          required: true
+    - name: spending-limit-by-arn
+      path: /spending-limit/{spendingLimitArn}
+      operations:
+      - name: updatespendinglimit
+        method: PUT
+        description: AWS Braket Update A Spending Limit
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: spendingLimitArn
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          required: true
+      - name: deletespendinglimit
+        method: DELETE
+        description: AWS Braket Delete A Spending Limit
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: spendingLimitArn
+          in: path
+          type: string
+          required: true
+    - name: spending-limits
+      path: /spending-limits
+      operations:
+      - name: searchspendinglimits
+        method: POST
+        description: AWS Braket Search Spending Limits
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          required: true
+    authentication:
+      type: awssigv4
+      region: '{{env.AWS_REGION}}'
+      service: braket
+      accessKeyId: '{{env.AWS_ACCESS_KEY_ID}}'
+      secretAccessKey: '{{env.AWS_SECRET_ACCESS_KEY}}'
+  exposes:
+  - type: mcp
+    namespace: spending-limits-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for AWS Braket Spending Limits.
+    tools:
+    - name: aws-braket-create-spending-limit
+      description: AWS Braket Create A Spending Limit
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: spending-limits.createspendinglimit
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: aws-braket-update-spending-limit
+      description: AWS Braket Update A Spending Limit
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: spending-limits.updatespendinglimit
+      with:
+        spendingLimitArn: tools.spendingLimitArn
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: aws-braket-delete-spending-limit
+      description: AWS Braket Delete A Spending Limit
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: spending-limits.deletespendinglimit
+      with:
+        spendingLimitArn: tools.spendingLimitArn
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: aws-braket-search-spending-limits
+      description: AWS Braket Search Spending Limits
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: spending-limits.searchspendinglimits
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

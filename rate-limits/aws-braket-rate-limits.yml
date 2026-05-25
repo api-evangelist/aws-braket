@@ -1,0 +1,73 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: AWS Braket
+providerId: aws-braket
+created: '2026-05-25'
+modified: '2026-05-25'
+reconciled: true
+tags:
+  - AWS
+  - Rate Limiting
+  - Quotas
+  - Spending Limits
+description: Reconciled AWS Braket control-plane throttling limits, device-side queue gating, and opt-in spending-limit gating. Braket uses AWS standard token-bucket throttling for control-plane calls, queues each task on the target device, and (optionally) gates CreateQuantumTask against a per-device spending limit.
+sources:
+  - https://docs.aws.amazon.com/braket/latest/APIReference/CommonErrors.html
+  - https://docs.aws.amazon.com/braket/latest/developerguide/braket-pricing.html
+  - https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html
+algorithm: token-bucket
+responseCodes:
+  throttled: 429
+  deviceOffline: 424
+  deviceRetired: 410
+  quotaExceeded: 402
+  validation: 400
+gating:
+  - name: control_plane_throttling
+    scope: per-account-per-region
+    description: AWS SigV4 control-plane operations (Create/Get/Search/Cancel) follow standard AWS service throttling. Burst-and-refill via token bucket; exact rates are AWS-managed and surface through ThrottlingException (429).
+  - name: device_queue
+    scope: per-device
+    description: Each device maintains separate Normal and Priority queues for quantum tasks plus a jobs queue. Submission is accepted; execution waits for the device to be available.
+    queues:
+      - QUANTUM_TASKS_QUEUE / Normal
+      - QUANTUM_TASKS_QUEUE / Priority
+      - JOBS_QUEUE / Normal
+  - name: spending_limit
+    scope: per-device-per-account
+    description: Optional spending limit gates CreateQuantumTask at submission time. If estimated cost > remaining budget, returns ServiceQuotaExceededException (402) and no task is created. Applies only to on-demand and hybrid-job QPU tasks; excludes simulators, notebooks, hybrid-job EC2 cost, and Braket Direct reservations.
+    enforcement:
+      - state: CREATED
+        action: increase queued spend by estimated cost
+      - state: COMPLETED
+        action: move estimated cost from queued spend to current spend
+      - state: FAILED | CANCELLED
+        action: decrease queued spend by estimated cost
+serviceQuotas:
+  - name: ConcurrentQuantumTasks
+    scope: per-account-per-region
+    default: Region-dependent (visible via Service Quotas console under "Amazon Braket")
+  - name: ConcurrentHybridJobs
+    scope: per-account-per-region
+    default: Region-dependent
+adjustability:
+  - method: Service Quotas console (request limit increase)
+  - method: Spending limits API (CreateSpendingLimit / UpdateSpendingLimit) for cost gating
+  - method: Braket Direct reservation for guaranteed throughput
+errors:
+  - code: ThrottlingException
+    httpStatus: 429
+    description: API throttling rate limit exceeded; retry with exponential backoff.
+  - code: ServiceQuotaExceededException
+    httpStatus: 402
+    description: Service quota or spending limit exceeded.
+  - code: DeviceOfflineException
+    httpStatus: 424
+    description: Target device is currently offline.
+  - code: DeviceRetiredException
+    httpStatus: 410
+    description: Target device has been retired.
+  - code: ValidationException
+    httpStatus: 400
+    description: Request violates a service constraint.

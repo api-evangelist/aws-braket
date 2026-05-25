@@ -1,0 +1,110 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: AWS Braket
+providerId: aws-braket
+created: '2026-05-25'
+modified: '2026-05-25'
+reconciled: true
+tags:
+  - FinOps
+  - FOCUS
+  - Quantum Computing
+  - AWS
+description: FOCUS-aligned FinOps definition for Amazon Braket. Braket bills three distinct meters — per-task fees, per-shot fees (QPU), per-minute fees (on-demand simulators) — plus ML-instance hourly rates for hybrid jobs and fixed hourly rates for Braket Direct reservations. Opt-in spending limits gate task submission at the API; Cost Explorer and AWS Budgets handle invoice-time visibility.
+sources:
+  - https://aws.amazon.com/braket/pricing/
+  - https://docs.aws.amazon.com/braket/latest/developerguide/braket-pricing.html
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Amazon Web Services
+serviceCategory: Quantum Computing
+billingModel:
+  pricingCategory: Usage-Based
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+    - Usage
+    - Purchase
+    - Tax
+    - Credit
+    - Adjustment
+  primaryUnit: shot
+  secondaryUnits:
+    - task
+    - simulator_minute
+    - instance_hour
+    - reservation_hour
+focusColumns:
+  ServiceName: Amazon Braket
+  ServiceCategory: Quantum Computing
+  ProviderName: Amazon Web Services
+  PublisherName: Amazon Web Services
+  InvoiceIssuerName: Amazon Web Services
+  PricingCategory: Usage-Based
+  PricingUnit: shot
+  BillingCurrency: USD
+  ResourceType:
+    - QuantumTask
+    - HybridJob
+    - DeviceReservation
+meters:
+  - name: per_task_fee
+    unit: task
+    aggregation: count
+    dimensions: [device_arn, region, account]
+    description: Flat $0.30 per quantum task on any QPU.
+  - name: per_shot_fee
+    unit: shot
+    aggregation: sum
+    dimensions: [device_arn, provider, region, account]
+    description: Provider-specific per-shot fee, charged on COMPLETED tasks.
+  - name: simulator_runtime
+    unit: minute
+    aggregation: sum
+    dimensions: [simulator_arn, region, account]
+    description: Per-minute simulator billing with a 3-second minimum.
+  - name: hybrid_job_instance_runtime
+    unit: hour
+    aggregation: sum
+    dimensions: [instance_type, region, account]
+    description: ML-instance time consumed by hybrid jobs.
+  - name: reservation_hour
+    unit: hour
+    aggregation: sum
+    dimensions: [device_arn, provider, region, account]
+    description: Braket Direct dedicated-time block.
+costControls:
+  - name: SpendingLimit
+    scope: per-device-per-account
+    enforcement: api-time
+    description: Validates each CreateQuantumTask against a remaining budget; rejects submission if estimated cost exceeds budget. Applies only to on-demand and hybrid-job QPU tasks.
+  - name: Tracker
+    scope: sdk-runtime
+    description: braket.tracking.Tracker — near-real-time cost estimator surfaced in the Braket Python SDK. Reports shots, billable execution duration, and maximum estimated cost in USD.
+  - name: AWSBudgets
+    scope: account
+    description: Cross-service budget alerts and forecasts.
+  - name: CostExplorer
+    scope: account
+    description: Tag-based cost allocation and historic spend analysis. Braket tags propagate to Cost Allocation Tags.
+  - name: BraketDirectReservation
+    scope: per-device
+    description: Predictable hourly cost in exchange for exclusive device access during the reserved window.
+tagging:
+  required: false
+  recommended:
+    - project
+    - costCenter
+    - owner
+    - environment
+  resources:
+    - QuantumTask
+    - HybridJob
+    - SpendingLimit
+freeTier:
+  description: 1 hour of included on-demand simulator time per month for the first 12 months. Does not include QPU access.
