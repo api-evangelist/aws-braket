@@ -1,0 +1,504 @@
+{
+  "item": [
+    {
+      "id": "7050176d-754f-401a-977b-25873923eaca",
+      "name": "Devices",
+      "description": {
+        "content": "Quantum devices (QPUs and simulators).",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7e621722-545a-4f39-9df9-23366727a14d",
+          "name": "AWS Braket Get A Device",
+          "request": {
+            "name": "AWS Braket Get A Device",
+            "description": {
+              "content": "Retrieve information about a single Amazon Braket device, including its provider, status (ONLINE / OFFLINE / RETIRED), queue size, and a JSON deviceCapabilities document describing supported gates, qubit topology, connectivity, paradigm, and calibration data.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "device",
+                ":deviceArn"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "deviceArn",
+                  "description": "(Required) ARN of the device, case sensitive (e.g. arn:aws:braket:us-east-1::device/qpu/ionq/Forte-1)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "946fd31b-93b0-4f9e-8259-899f4f7a0b40",
+              "name": "Device description.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "device",
+                    ":deviceArn"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceArn",
+                      "description": "(Required) ARN of the device, case sensitive (e.g. arn:aws:braket:us-east-1::device/qpu/ionq/Forte-1)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"deviceArn\": \"string\",\n  \"deviceName\": \"string\",\n  \"providerName\": \"string\",\n  \"deviceStatus\": \"RETIRED\",\n  \"deviceType\": \"QPU\",\n  \"deviceCapabilities\": \"string\",\n  \"deviceQueueInfo\": [\n    {\n      \"queue\": \"JOBS_QUEUE\",\n      \"queuePriority\": \"Normal\",\n      \"queueSize\": \"string\"\n    },\n    {\n      \"queue\": \"JOBS_QUEUE\",\n      \"queuePriority\": \"Priority\",\n      \"queueSize\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9fe52c88-8349-461a-8f29-d98197315e04",
+              "name": "Request validation failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "device",
+                    ":deviceArn"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceArn",
+                      "description": "(Required) ARN of the device, case sensitive (e.g. arn:aws:braket:us-east-1::device/qpu/ionq/Forte-1)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d81dc63c-6239-441b-a4e9-c27c0b635c9a",
+              "name": "Caller lacks the required IAM permission.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "device",
+                    ":deviceArn"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceArn",
+                      "description": "(Required) ARN of the device, case sensitive (e.g. arn:aws:braket:us-east-1::device/qpu/ionq/Forte-1)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e74832b1-06e3-4390-bb62-e3ba5a63e520",
+              "name": "The requested device does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "device",
+                    ":deviceArn"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceArn",
+                      "description": "(Required) ARN of the device, case sensitive (e.g. arn:aws:braket:us-east-1::device/qpu/ionq/Forte-1)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ff3f3a08-541f-4ea2-8006-8863f7fa309c",
+              "name": "Throttled.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "device",
+                    ":deviceArn"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceArn",
+                      "description": "(Required) ARN of the device, case sensitive (e.g. arn:aws:braket:us-east-1::device/qpu/ionq/Forte-1)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5f2d6edb-2707-4066-a736-100531b710db",
+              "name": "Unexpected error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "device",
+                    ":deviceArn"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceArn",
+                      "description": "(Required) ARN of the device, case sensitive (e.g. arn:aws:braket:us-east-1::device/qpu/ionq/Forte-1)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e2579f23-d29d-4308-9dd3-cd3c0f503028",
+          "name": "AWS Braket Search Devices",
+          "request": {
+            "name": "AWS Braket Search Devices",
+            "description": {
+              "content": "Search the catalog of Amazon Braket devices available in the calling region. Supports filtering by provider name, device ARN, name, type, and status.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "devices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"filters\": [\n    {\n      \"name\": \"<string>\",\n      \"values\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"values\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"maxResults\": \"<integer>\",\n  \"nextToken\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f2ffd8a6-e7e5-437a-a1a1-b7294c480ac4",
+              "name": "Device search results.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "devices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filters\": [\n    {\n      \"name\": \"deviceType\",\n      \"values\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"name\": \"deviceStatus\",\n      \"values\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"maxResults\": \"<integer>\",\n  \"nextToken\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"devices\": [\n    {\n      \"deviceArn\": \"string\",\n      \"deviceName\": \"string\",\n      \"providerName\": \"string\",\n      \"deviceStatus\": \"OFFLINE\",\n      \"deviceType\": \"SIMULATOR\"\n    },\n    {\n      \"deviceArn\": \"string\",\n      \"deviceName\": \"string\",\n      \"providerName\": \"string\",\n      \"deviceStatus\": \"OFFLINE\",\n      \"deviceType\": \"QPU\"\n    }\n  ],\n  \"nextToken\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://braket.us-east-1.amazonaws.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ca95cb48-f0ab-4036-9706-fdd9ae9b11c2",
+    "name": "AWS Braket Devices API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Discover quantum devices available on Amazon Braket — QPUs from AQT, IonQ, IQM, QuEra, and Rigetti, plus AWS-managed on-demand simulators (SV1, DM1, TN1). Use GetDevice to retrieve provider capabilities, paradigm, queue state, native gate set, and topology for a single ARN; use SearchDevices to enumerate devices by status, provider, and type.\n\n\nContact Support:\n Name: AWS Support",
+      "type": "text/plain"
+    }
+  }
+}

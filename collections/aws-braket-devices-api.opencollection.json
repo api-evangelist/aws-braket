@@ -1,0 +1,60 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "AWS Braket Devices API",
+    "version": "Sat Aug 31 2019 20:00:00 GMT-0400 (Eastern Daylight Time)"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Devices",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "AWS Braket Get A Device",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://braket.us-east-1.amazonaws.com/device/:deviceArn",
+            "params": [
+              {
+                "name": "deviceArn",
+                "value": "",
+                "type": "path",
+                "description": "ARN of the device, case sensitive (e.g. arn:aws:braket:us-east-1::device/qpu/ionq/Forte-1)."
+              }
+            ]
+          },
+          "docs": "Retrieve information about a single Amazon Braket device, including its provider, status (ONLINE / OFFLINE / RETIRED), queue size, and a JSON deviceCapabilities document describing supported gates, qubit topology, connectivity, paradigm, and calibration data.\n"
+        },
+        {
+          "info": {
+            "name": "AWS Braket Search Devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://braket.us-east-1.amazonaws.com/devices",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Search the catalog of Amazon Braket devices available in the calling region. Supports filtering by provider name, device ARN, name, type, and status.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

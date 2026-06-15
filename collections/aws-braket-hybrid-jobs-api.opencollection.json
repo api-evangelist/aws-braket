@@ -1,0 +1,92 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "AWS Braket Hybrid Jobs API",
+    "version": "Sat Aug 31 2019 20:00:00 GMT-0400 (Eastern Daylight Time)"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "HybridJobs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "AWS Braket Create A Hybrid Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://braket.us-east-1.amazonaws.com/job",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a hybrid job that runs a containerized algorithm against a designated QPU or simulator. Specifies the container image (or script mode with an S3 entry point), the device, instance configuration (default ml.m5.xlarge), hyperparameters, input/output channels, IAM role, and stopping condition.\n"
+        },
+        {
+          "info": {
+            "name": "AWS Braket Get A Hybrid Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://braket.us-east-1.amazonaws.com/job/:jobArn",
+            "params": [
+              {
+                "name": "jobArn",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve the status, device, instance config, and checkpoint metadata for a hybrid job.\n"
+        },
+        {
+          "info": {
+            "name": "AWS Braket Cancel A Hybrid Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://braket.us-east-1.amazonaws.com/job/:jobArn/cancel",
+            "params": [
+              {
+                "name": "jobArn",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Cancel a hybrid job that has not yet completed."
+        },
+        {
+          "info": {
+            "name": "AWS Braket Search Hybrid Jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://braket.us-east-1.amazonaws.com/jobs",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Search and list hybrid jobs by status, device, creation time, or tag."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

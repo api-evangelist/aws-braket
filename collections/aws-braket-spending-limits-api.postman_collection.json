@@ -1,0 +1,442 @@
+{
+  "item": [
+    {
+      "id": "3a2e666a-86ed-41da-9c3a-f17c24d0e977",
+      "name": "SpendingLimits",
+      "description": {
+        "content": "Per-device opt-in cost controls for QPU tasks.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c4ce4e7e-92a1-451b-9eeb-f87e47cd3838",
+          "name": "AWS Braket Create A Spending Limit",
+          "request": {
+            "name": "AWS Braket Create A Spending Limit",
+            "description": {
+              "content": "Create a new spending limit for a specified QPU device in the current region. Rejected if a limit already exists for the device.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "spending-limit"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"deviceArn\": \"<string>\",\n  \"spendingLimit\": \"<string>\",\n  \"clientToken\": \"<string>\",\n  \"timePeriod\": {\n    \"start\": \"<dateTime>\",\n    \"end\": \"<dateTime>\"\n  },\n  \"tags\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "55ab0862-c7ff-4681-b591-f1d3180f5944",
+              "name": "Spending limit created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "spending-limit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"deviceArn\": \"<string>\",\n  \"spendingLimit\": \"<string>\",\n  \"clientToken\": \"<string>\",\n  \"timePeriod\": {\n    \"start\": \"<dateTime>\",\n    \"end\": \"<dateTime>\"\n  },\n  \"tags\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"spendingLimitArn\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "133d8020-f570-410c-a6f9-dc20840c879a",
+          "name": "AWS Braket Update A Spending Limit",
+          "request": {
+            "name": "AWS Braket Update A Spending Limit",
+            "description": {
+              "content": "Update the maximum spend value and/or time period for an existing spending limit. Rejected if the sum of current spend and queued spend already exceeds the requested new maximum.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "spending-limit",
+                ":spendingLimitArn"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "spendingLimitArn",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"spendingLimit\": \"<string>\",\n  \"timePeriod\": {\n    \"start\": \"<dateTime>\",\n    \"end\": \"<dateTime>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "78a6c7e6-2fe9-4445-914d-94a3da9076e5",
+              "name": "Spending limit updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "spending-limit",
+                    ":spendingLimitArn"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "spendingLimitArn",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"spendingLimit\": \"<string>\",\n  \"timePeriod\": {\n    \"start\": \"<dateTime>\",\n    \"end\": \"<dateTime>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "53728e99-47df-4311-a4ae-82d5ce3a01c4",
+          "name": "AWS Braket Delete A Spending Limit",
+          "request": {
+            "name": "AWS Braket Delete A Spending Limit",
+            "description": {
+              "content": "Delete the spending limit, removing all restrictions on the device.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "spending-limit",
+                ":spendingLimitArn"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "spendingLimitArn",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "615f4f37-671d-4395-bda0-921b5f67ec96",
+              "name": "Spending limit deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "spending-limit",
+                    ":spendingLimitArn"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "spendingLimitArn",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c434e0d8-f578-4154-9c1b-1ba3c723f3a6",
+          "name": "AWS Braket Search Spending Limits",
+          "request": {
+            "name": "AWS Braket Search Spending Limits",
+            "description": {
+              "content": "Search spending limits, typically filtered by deviceArn.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "spending-limits"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"filters\": [\n    {\n      \"name\": \"<string>\",\n      \"operator\": \"<string>\",\n      \"values\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"operator\": \"<string>\",\n      \"values\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"maxResults\": \"<integer>\",\n  \"nextToken\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "428394fd-b432-41a1-8731-e1ae01369965",
+              "name": "Spending limit results.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "spending-limits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filters\": [\n    {\n      \"name\": \"<string>\",\n      \"operator\": \"<string>\",\n      \"values\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"operator\": \"<string>\",\n      \"values\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"maxResults\": \"<integer>\",\n  \"nextToken\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"spendingLimits\": [\n    {\n      \"spendingLimitArn\": \"string\",\n      \"deviceArn\": \"string\",\n      \"spendingLimit\": \"string\",\n      \"currentSpend\": \"string\",\n      \"queuedSpend\": \"string\",\n      \"remainingBudget\": \"string\",\n      \"timePeriod\": {\n        \"start\": \"2016-08-06T03:44:57.753Z\",\n        \"end\": \"1979-05-04T03:58:15.591Z\"\n      }\n    },\n    {\n      \"spendingLimitArn\": \"string\",\n      \"deviceArn\": \"string\",\n      \"spendingLimit\": \"string\",\n      \"currentSpend\": \"string\",\n      \"queuedSpend\": \"string\",\n      \"remainingBudget\": \"string\",\n      \"timePeriod\": {\n        \"start\": \"1968-05-25T14:18:58.337Z\",\n        \"end\": \"2023-12-10T06:31:23.506Z\"\n      }\n    }\n  ],\n  \"nextToken\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://braket.us-east-1.amazonaws.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b231ce1e-36fc-4b0e-b29a-9306066332bf",
+    "name": "AWS Braket Spending Limits API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Create, update, search, and delete optional per-device spending limits for Amazon Braket QPUs. Spending limits are opt-in cost controls: when set, Amazon Braket validates each CreateQuantumTask request against the remaining budget and rejects tasks whose estimated cost would exceed the limit. Limits can be scoped to a time window. Spending limits apply only to on-demand and hybrid-job QPU tasks; they exclude simulator usage, notebooks, hybrid-job EC2 cost, and Braket Direct reservations.\n\n\nContact Support:\n Name: AWS Support",
+      "type": "text/plain"
+    }
+  }
+}
