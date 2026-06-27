@@ -27,7 +27,7 @@ apis:
       - url: json-ld/aws-braket-context.jsonld
         type: JSONLD
       - url: examples/aws-braket-create-quantum-task-example.json
-        type: Example
+        type: Examples
     description: >-
       Create, retrieve, search, and cancel quantum tasks on Amazon Braket. A quantum task submits a single OpenQASM 3,
       ProgramSet, or Analog Hamiltonian Simulation program to a target QPU or simulator device with a chosen shot count;
@@ -53,7 +53,7 @@ apis:
       - url: json-schema/aws-braket-device-schema.json
         type: JSONSchema
       - url: examples/aws-braket-get-device-example.json
-        type: Example
+        type: Examples
     description: >-
       Discover the QPU and simulator devices available on Amazon Braket. Returns device ARN, provider (AQT, IonQ, IQM,
       QuEra, Rigetti, Amazon), status (ONLINE/OFFLINE/RETIRED), queue depth, paradigm (gate-based or AHS), native gate
@@ -81,7 +81,7 @@ apis:
       - url: json-schema/aws-braket-hybrid-job-schema.json
         type: JSONSchema
       - url: examples/aws-braket-create-hybrid-job-example.json
-        type: Example
+        type: Examples
     description: >-
       Orchestrate hybrid quantum-classical algorithms. A hybrid job runs a container or script-mode entry point on
       ML-class EC2 instances while consuming priority QPU/simulator capacity through the Braket service. Use for
@@ -102,7 +102,7 @@ apis:
       - url: openapi/aws-braket-spending-limits-api-openapi.yml
         type: OpenAPI
       - url: examples/aws-braket-create-spending-limit-example.json
-        type: Example
+        type: Examples
     description: >-
       Opt-in per-device cost ceilings that gate CreateQuantumTask at the API. Spending limits validate each request
       against remaining budget (spending limit minus current and queued spend) and reject submissions whose estimated
@@ -178,22 +178,22 @@ common:
     type: Blog
   - url: https://signin.aws.amazon.com/signup
     name: AWS Sign Up
-    type: SignUp
+    type: Signup
   - url: https://github.com/amazon-braket
     name: amazon-braket GitHub Organization
     type: GitHubOrganization
   - url: https://github.com/amazon-braket/amazon-braket-sdk-python
     name: Amazon Braket Python SDK
-    type: SDK
+    type: SDKs
   - url: https://amazon-braket-sdk-python.readthedocs.io/en/latest/
     name: Amazon Braket Python SDK Docs
     type: Documentation
   - url: https://github.com/amazon-braket/amazon-braket-schemas-python
     name: Amazon Braket Schemas
-    type: SDK
+    type: SDKs
   - url: https://github.com/amazon-braket/amazon-braket-default-simulator-python
     name: Amazon Braket Default Simulator
-    type: SDK
+    type: SDKs
   - url: https://github.com/amazon-braket/amazon-braket-examples
     name: Amazon Braket Examples
     type: CodeExamples
@@ -208,40 +208,40 @@ common:
     type: Plugins
   - url: https://github.com/amazon-braket/Braket.jl
     name: Braket.jl (Julia)
-    type: SDK
+    type: SDKs
   - url: https://github.com/amazon-braket/autoqasm
     name: AutoQASM
-    type: SDK
+    type: SDKs
   - url: https://github.com/amazon-braket/amazon-braket-containers
     name: Braket Hybrid Job Containers
-    type: Tool
+    type: Tools
   - url: https://docs.aws.amazon.com/cli/latest/reference/braket/
     name: AWS CLI Braket Commands
-    type: SDK
+    type: SDKs
   - url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/braket.html
     name: AWS SDK for Python (Boto3) - Braket
-    type: SDK
+    type: SDKs
   - url: https://docs.aws.amazon.com/sdkfornet/v3/apidocs/items/Braket/NBraket.html
     name: AWS SDK for .NET - Braket
-    type: SDK
+    type: SDKs
   - url: https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/braket/package-summary.html
     name: AWS SDK for Java - Braket
-    type: SDK
+    type: SDKs
   - url: https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/Braket.html
     name: AWS SDK for JavaScript - Braket
-    type: SDK
+    type: SDKs
   - url: https://docs.aws.amazon.com/sdk-for-go/api/service/braket/
     name: AWS SDK for Go - Braket
-    type: SDK
+    type: SDKs
   - url: https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-Aws.Braket.BraketClient.html
     name: AWS SDK for PHP - Braket
-    type: SDK
+    type: SDKs
   - url: https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/Braket.html
     name: AWS SDK for Ruby - Braket
-    type: SDK
+    type: SDKs
   - url: https://sdk.amazonaws.com/cpp/api/LATEST/namespace_aws_1_1_braket.html
     name: AWS SDK for C++ - Braket
-    type: SDK
+    type: SDKs
   - url: https://openqasm.com/
     name: OpenQASM 3.0
     type: Documentation
