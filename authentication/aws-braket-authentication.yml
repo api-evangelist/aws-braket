@@ -1,0 +1,21 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/aws-braket-devices-api-openapi.yml, openapi/aws-braket-hybrid-jobs-api-openapi.yml,
+  openapi/aws-braket-quantum-tasks-api-openapi.yml, openapi/aws-braket-spending-limits-api-openapi.yml,
+  openapi/aws-braket-tags-api-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: SigV4
+  type: apiKey
+  in: header
+  parameter: Authorization
+  sources:
+  - openapi/aws-braket-devices-api-openapi.yml
+  - openapi/aws-braket-hybrid-jobs-api-openapi.yml
+  - openapi/aws-braket-quantum-tasks-api-openapi.yml
+  - openapi/aws-braket-spending-limits-api-openapi.yml
+  - openapi/aws-braket-tags-api-openapi.yml

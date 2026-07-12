@@ -143,6 +143,14 @@ kind: contract
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 common:
+  - type: TrustCenter
+    url: security/aws-braket-trust-center.yml
+  - type: VulnerabilityDisclosure
+    url: security/aws-braket-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/aws-braket-domain-security.yml
+  - type: Authentication
+    url: authentication/aws-braket-authentication.yml
   - url: https://aws.amazon.com/braket/
     name: AWS Braket Home
     type: Portal
