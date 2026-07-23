@@ -1,0 +1,422 @@
+openapi: 3.1.0
+info:
+  title: AWS Braket Devices QuantumTasks API
+  description: 'Discover quantum devices available on Amazon Braket — QPUs from AQT, IonQ, IQM, QuEra, and Rigetti, plus AWS-managed on-demand simulators (SV1, DM1, TN1). Use GetDevice to retrieve provider capabilities, paradigm, queue state, native gate set, and topology for a single ARN; use SearchDevices to enumerate devices by status, provider, and type.
+
+    '
+  version: 2019-09-01
+  contact:
+    name: AWS Support
+    url: https://aws.amazon.com/contact-us/
+servers:
+- url: https://braket.us-east-1.amazonaws.com
+  description: US East (N. Virginia)
+- url: https://braket.us-west-2.amazonaws.com
+  description: US West (Oregon)
+- url: https://braket.eu-north-1.amazonaws.com
+  description: EU (Stockholm)
+security:
+- SigV4: []
+tags:
+- name: QuantumTasks
+  description: Submit and manage quantum task executions on Amazon Braket devices.
+paths:
+  /quantum-task:
+    post:
+      summary: AWS Braket Create A Quantum Task
+      description: 'Create a quantum task by submitting an action document (OpenQASM 3 program, ProgramSet, or AHS program) to be executed on a specified QPU or simulator device. Returns the ARN of the new task; result files are written to the S3 location supplied in outputS3Bucket and outputS3KeyPrefix.
+
+        '
+      operationId: createQuantumTask
+      tags:
+      - QuantumTasks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateQuantumTaskRequest'
+      responses:
+        '201':
+          description: Quantum task created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateQuantumTaskResponse'
+        '400':
+          $ref: '#/components/responses/ValidationException'
+        '403':
+          $ref: '#/components/responses/AccessDeniedException'
+        '410':
+          $ref: '#/components/responses/DeviceRetiredException'
+        '424':
+          $ref: '#/components/responses/DeviceOfflineException'
+        '402':
+          $ref: '#/components/responses/ServiceQuotaExceededException'
+        '429':
+          $ref: '#/components/responses/ThrottlingException'
+        '500':
+          $ref: '#/components/responses/InternalServiceException'
+  /quantum-task/{quantumTaskArn}:
+    get:
+      summary: AWS Braket Get A Quantum Task
+      description: 'Retrieve the current state, device, shot count, and result location for a quantum task identified by its ARN.
+
+        '
+      operationId: getQuantumTask
+      tags:
+      - QuantumTasks
+      parameters:
+      - name: quantumTaskArn
+        in: path
+        required: true
+        schema:
+          type: string
+          minLength: 1
+          maxLength: 256
+      responses:
+        '200':
+          description: Quantum task description.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuantumTask'
+        '400':
+          $ref: '#/components/responses/ValidationException'
+        '403':
+          $ref: '#/components/responses/AccessDeniedException'
+        '404':
+          $ref: '#/components/responses/ResourceNotFoundException'
+        '429':
+          $ref: '#/components/responses/ThrottlingException'
+        '500':
+          $ref: '#/components/responses/InternalServiceException'
+  /quantum-task/{quantumTaskArn}/cancel:
+    put:
+      summary: AWS Braket Cancel A Quantum Task
+      description: 'Cancel a quantum task that has not yet completed. Tasks already running on a QPU may continue until the next coherent stopping point.
+
+        '
+      operationId: cancelQuantumTask
+      tags:
+      - QuantumTasks
+      parameters:
+      - name: quantumTaskArn
+        in: path
+        required: true
+        schema:
+          type: string
+          minLength: 1
+          maxLength: 256
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - clientToken
+              properties:
+                clientToken:
+                  type: string
+                  minLength: 1
+                  maxLength: 64
+      responses:
+        '200':
+          description: Cancellation accepted.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  cancellationStatus:
+                    type: string
+                    enum:
+                    - CANCELLING
+                    - CANCELLED
+                  quantumTaskArn:
+                    type: string
+        '400':
+          $ref: '#/components/responses/ValidationException'
+        '403':
+          $ref: '#/components/responses/AccessDeniedException'
+        '404':
+          $ref: '#/components/responses/ResourceNotFoundException'
+        '409':
+          $ref: '#/components/responses/ConflictException'
+        '429':
+          $ref: '#/components/responses/ThrottlingException'
+        '500':
+          $ref: '#/components/responses/InternalServiceException'
+  /quantum-tasks:
+    post:
+      summary: AWS Braket Search Quantum Tasks
+      description: 'Search the caller''s quantum tasks. Filters include device ARN, status, creation time range, and tag values.
+
+        '
+      operationId: searchQuantumTasks
+      tags:
+      - QuantumTasks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - filters
+              properties:
+                filters:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/SearchQuantumTasksFilter'
+                maxResults:
+                  type: integer
+                  minimum: 1
+                  maximum: 100
+                nextToken:
+                  type: string
+      responses:
+        '200':
+          description: Search results.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  quantumTasks:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/QuantumTaskSummary'
+                  nextToken:
+                    type: string
+components:
+  responses:
+    ResourceNotFoundException:
+      description: The resource does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ThrottlingException:
+      description: The API throttling rate limit is exceeded.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    DeviceOfflineException:
+      description: The targeted device is currently offline.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    DeviceRetiredException:
+      description: The targeted device has been retired.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    AccessDeniedException:
+      description: Caller lacks the required IAM permission.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ServiceQuotaExceededException:
+      description: A service quota or spending limit was exceeded.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InternalServiceException:
+      description: An unexpected service error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ValidationException:
+      description: The input request failed validation.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ConflictException:
+      description: Conflicting state for the resource.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    CreateQuantumTaskRequest:
+      type: object
+      required:
+      - action
+      - clientToken
+      - deviceArn
+      - outputS3Bucket
+      - outputS3KeyPrefix
+      - shots
+      properties:
+        action:
+          type: string
+          description: The serialized quantum program. Typically a JSON document conforming to braket.ir.openqasm.program, braket.ir.openqasm.program_set, or braket.ir.ahs.program.
+        clientToken:
+          type: string
+          description: Idempotency token unique per task.
+          minLength: 1
+          maxLength: 64
+        deviceArn:
+          type: string
+          description: ARN of the target QPU or simulator device. ARNs are case sensitive (e.g. arn:aws:braket:eu-north-1::device/qpu/aqt/Ibex-Q1).
+          minLength: 1
+          maxLength: 256
+        deviceParameters:
+          type: string
+          description: JSON-encoded provider-specific device parameters (gate set selection, noise model, etc.).
+          maxLength: 48000
+        shots:
+          type: integer
+          format: int64
+          description: Number of shots to execute. 0 for simulators that return statevectors.
+          minimum: 0
+        outputS3Bucket:
+          type: string
+          minLength: 3
+          maxLength: 63
+        outputS3KeyPrefix:
+          type: string
+          minLength: 1
+          maxLength: 1024
+        jobToken:
+          type: string
+          description: Optional Braket hybrid job token that associates the quantum task with a parent job.
+        associations:
+          type: array
+          maxItems: 1
+          items:
+            type: object
+            properties:
+              arn:
+                type: string
+              type:
+                type: string
+                enum:
+                - RESERVATION_TIME_WINDOW_ARN
+        experimentalCapabilities:
+          type: object
+          description: Union of experimental capabilities (e.g. pulse-level control). Only one member may be set.
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+    SearchQuantumTasksFilter:
+      type: object
+      required:
+      - name
+      - operator
+      - values
+      properties:
+        name:
+          type: string
+          enum:
+          - deviceArn
+          - status
+          - createdAt
+          - tag
+        operator:
+          type: string
+          enum:
+          - EQUAL
+          - BETWEEN
+          - LT
+          - LTE
+          - GT
+          - GTE
+        values:
+          type: array
+          items:
+            type: string
+    QuantumTask:
+      type: object
+      properties:
+        quantumTaskArn:
+          type: string
+        status:
+          type: string
+          enum:
+          - CREATED
+          - QUEUED
+          - RUNNING
+          - COMPLETED
+          - FAILED
+          - CANCELLING
+          - CANCELLED
+        deviceArn:
+          type: string
+        deviceParameters:
+          type: string
+        shots:
+          type: integer
+          format: int64
+        outputS3Bucket:
+          type: string
+        outputS3Directory:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        endedAt:
+          type: string
+          format: date-time
+        failureReason:
+          type: string
+        jobArn:
+          type: string
+        queueInfo:
+          type: object
+          properties:
+            queue:
+              type: string
+            position:
+              type: string
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+    QuantumTaskSummary:
+      type: object
+      properties:
+        quantumTaskArn:
+          type: string
+        deviceArn:
+          type: string
+        status:
+          type: string
+        shots:
+          type: integer
+          format: int64
+        createdAt:
+          type: string
+          format: date-time
+        endedAt:
+          type: string
+          format: date-time
+        outputS3Bucket:
+          type: string
+        outputS3Directory:
+          type: string
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+    CreateQuantumTaskResponse:
+      type: object
+      properties:
+        quantumTaskArn:
+          type: string
+          maxLength: 256
+  securitySchemes:
+    SigV4:
+      type: apiKey
+      name: Authorization
+      in: header

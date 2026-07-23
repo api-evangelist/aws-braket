@@ -1,50 +1,44 @@
 openapi: 3.1.0
 info:
   title: AWS Braket Devices API
-  description: >
-    Discover quantum devices available on Amazon Braket — QPUs from AQT, IonQ,
-    IQM, QuEra, and Rigetti, plus AWS-managed on-demand simulators (SV1, DM1, TN1).
-    Use GetDevice to retrieve provider capabilities, paradigm, queue state, native
-    gate set, and topology for a single ARN; use SearchDevices to enumerate
-    devices by status, provider, and type.
+  description: 'Discover quantum devices available on Amazon Braket — QPUs from AQT, IonQ, IQM, QuEra, and Rigetti, plus AWS-managed on-demand simulators (SV1, DM1, TN1). Use GetDevice to retrieve provider capabilities, paradigm, queue state, native gate set, and topology for a single ARN; use SearchDevices to enumerate devices by status, provider, and type.
+
+    '
   version: 2019-09-01
   contact:
     name: AWS Support
     url: https://aws.amazon.com/contact-us/
-
 servers:
-  - url: https://braket.us-east-1.amazonaws.com
-    description: US East (N. Virginia)
-  - url: https://braket.us-west-2.amazonaws.com
-    description: US West (Oregon)
-  - url: https://braket.eu-north-1.amazonaws.com
-    description: EU (Stockholm)
-
+- url: https://braket.us-east-1.amazonaws.com
+  description: US East (N. Virginia)
+- url: https://braket.us-west-2.amazonaws.com
+  description: US West (Oregon)
+- url: https://braket.eu-north-1.amazonaws.com
+  description: EU (Stockholm)
 security:
-  - SigV4: []
-
+- SigV4: []
 tags:
-  - name: Devices
-    description: Quantum devices (QPUs and simulators).
-
+- name: Devices
+  description: Quantum devices (QPUs and simulators).
 paths:
   /device/{deviceArn}:
     get:
       summary: AWS Braket Get A Device
-      description: >
-        Retrieve information about a single Amazon Braket device, including its
-        provider, status (ONLINE / OFFLINE / RETIRED), queue size, and a JSON
-        deviceCapabilities document describing supported gates, qubit topology,
-        connectivity, paradigm, and calibration data.
+      description: 'Retrieve information about a single Amazon Braket device, including its provider, status (ONLINE / OFFLINE / RETIRED), queue size, and a JSON deviceCapabilities document describing supported gates, qubit topology, connectivity, paradigm, and calibration data.
+
+        '
       operationId: getDevice
       tags:
-        - Devices
+      - Devices
       parameters:
-        - name: deviceArn
-          in: path
-          required: true
-          description: ARN of the device, case sensitive (e.g. arn:aws:braket:us-east-1::device/qpu/ionq/Forte-1).
-          schema: { type: string, minLength: 1, maxLength: 256 }
+      - name: deviceArn
+        in: path
+        required: true
+        description: ARN of the device, case sensitive (e.g. arn:aws:braket:us-east-1::device/qpu/ionq/Forte-1).
+        schema:
+          type: string
+          minLength: 1
+          maxLength: 256
       responses:
         '200':
           description: Device description.
@@ -52,36 +46,44 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Device'
-        '400': { $ref: '#/components/responses/ValidationException' }
-        '403': { $ref: '#/components/responses/AccessDeniedException' }
-        '404': { $ref: '#/components/responses/ResourceNotFoundException' }
-        '429': { $ref: '#/components/responses/ThrottlingException' }
-        '500': { $ref: '#/components/responses/InternalServiceException' }
-
+        '400':
+          $ref: '#/components/responses/ValidationException'
+        '403':
+          $ref: '#/components/responses/AccessDeniedException'
+        '404':
+          $ref: '#/components/responses/ResourceNotFoundException'
+        '429':
+          $ref: '#/components/responses/ThrottlingException'
+        '500':
+          $ref: '#/components/responses/InternalServiceException'
   /devices:
     post:
       summary: AWS Braket Search Devices
-      description: >
-        Search the catalog of Amazon Braket devices available in the calling
-        region. Supports filtering by provider name, device ARN, name, type, and
-        status.
+      description: 'Search the catalog of Amazon Braket devices available in the calling region. Supports filtering by provider name, device ARN, name, type, and status.
+
+        '
       operationId: searchDevices
       tags:
-        - Devices
+      - Devices
       requestBody:
         required: true
         content:
           application/json:
             schema:
               type: object
-              required: [filters]
+              required:
+              - filters
               properties:
                 filters:
                   type: array
                   items:
                     $ref: '#/components/schemas/SearchDevicesFilter'
-                maxResults: { type: integer, minimum: 1, maximum: 100 }
-                nextToken: { type: string }
+                maxResults:
+                  type: integer
+                  minimum: 1
+                  maximum: 100
+                nextToken:
+                  type: string
       responses:
         '200':
           description: Device search results.
@@ -92,30 +94,65 @@ paths:
                 properties:
                   devices:
                     type: array
-                    items: { $ref: '#/components/schemas/DeviceSummary' }
-                  nextToken: { type: string }
-
+                    items:
+                      $ref: '#/components/schemas/DeviceSummary'
+                  nextToken:
+                    type: string
 components:
-  securitySchemes:
-    SigV4:
-      type: apiKey
-      name: Authorization
-      in: header
+  responses:
+    ResourceNotFoundException:
+      description: The requested device does not exist.
+      content:
+        application/json:
+          schema:
+            type: object
+    ThrottlingException:
+      description: Throttled.
+      content:
+        application/json:
+          schema:
+            type: object
+    AccessDeniedException:
+      description: Caller lacks the required IAM permission.
+      content:
+        application/json:
+          schema:
+            type: object
+    InternalServiceException:
+      description: Unexpected error.
+      content:
+        application/json:
+          schema:
+            type: object
+    ValidationException:
+      description: Request validation failed.
+      content:
+        application/json:
+          schema:
+            type: object
   schemas:
     Device:
       type: object
       properties:
-        deviceArn: { type: string, maxLength: 256 }
-        deviceName: { type: string }
+        deviceArn:
+          type: string
+          maxLength: 256
+        deviceName:
+          type: string
         providerName:
           type: string
           description: Quantum hardware provider (AQT, IonQ, IQM, QuEra, Rigetti, Amazon).
         deviceStatus:
           type: string
-          enum: [ONLINE, OFFLINE, RETIRED]
+          enum:
+          - ONLINE
+          - OFFLINE
+          - RETIRED
         deviceType:
           type: string
-          enum: [QPU, SIMULATOR]
+          enum:
+          - QPU
+          - SIMULATOR
         deviceCapabilities:
           type: string
           description: JSON document describing supported gates, qubit topology, paradigm, native gate set, and calibration.
@@ -124,40 +161,58 @@ components:
           items:
             type: object
             properties:
-              queue: { type: string, enum: [QUANTUM_TASKS_QUEUE, JOBS_QUEUE] }
-              queuePriority: { type: string, enum: [Normal, Priority] }
-              queueSize: { type: string }
-    DeviceSummary:
-      type: object
-      properties:
-        deviceArn: { type: string }
-        deviceName: { type: string }
-        providerName: { type: string }
-        deviceStatus: { type: string, enum: [ONLINE, OFFLINE, RETIRED] }
-        deviceType: { type: string, enum: [QPU, SIMULATOR] }
+              queue:
+                type: string
+                enum:
+                - QUANTUM_TASKS_QUEUE
+                - JOBS_QUEUE
+              queuePriority:
+                type: string
+                enum:
+                - Normal
+                - Priority
+              queueSize:
+                type: string
     SearchDevicesFilter:
       type: object
-      required: [name, values]
+      required:
+      - name
+      - values
       properties:
         name:
           type: string
-          enum: [deviceArn, deviceName, providerName, deviceType, deviceStatus]
+          enum:
+          - deviceArn
+          - deviceName
+          - providerName
+          - deviceType
+          - deviceStatus
         values:
           type: array
-          items: { type: string }
-  responses:
-    ValidationException:
-      description: Request validation failed.
-      content: { application/json: { schema: { type: object } } }
-    AccessDeniedException:
-      description: Caller lacks the required IAM permission.
-      content: { application/json: { schema: { type: object } } }
-    ResourceNotFoundException:
-      description: The requested device does not exist.
-      content: { application/json: { schema: { type: object } } }
-    ThrottlingException:
-      description: Throttled.
-      content: { application/json: { schema: { type: object } } }
-    InternalServiceException:
-      description: Unexpected error.
-      content: { application/json: { schema: { type: object } } }
+          items:
+            type: string
+    DeviceSummary:
+      type: object
+      properties:
+        deviceArn:
+          type: string
+        deviceName:
+          type: string
+        providerName:
+          type: string
+        deviceStatus:
+          type: string
+          enum:
+          - ONLINE
+          - OFFLINE
+          - RETIRED
+        deviceType:
+          type: string
+          enum:
+          - QPU
+          - SIMULATOR
+  securitySchemes:
+    SigV4:
+      type: apiKey
+      name: Authorization
+      in: header

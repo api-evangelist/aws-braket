@@ -1,0 +1,443 @@
+openapi: 3.1.0
+info:
+  title: AWS Braket Devices HybridJobs API
+  description: 'Discover quantum devices available on Amazon Braket — QPUs from AQT, IonQ, IQM, QuEra, and Rigetti, plus AWS-managed on-demand simulators (SV1, DM1, TN1). Use GetDevice to retrieve provider capabilities, paradigm, queue state, native gate set, and topology for a single ARN; use SearchDevices to enumerate devices by status, provider, and type.
+
+    '
+  version: 2019-09-01
+  contact:
+    name: AWS Support
+    url: https://aws.amazon.com/contact-us/
+servers:
+- url: https://braket.us-east-1.amazonaws.com
+  description: US East (N. Virginia)
+- url: https://braket.us-west-2.amazonaws.com
+  description: US West (Oregon)
+- url: https://braket.eu-north-1.amazonaws.com
+  description: EU (Stockholm)
+security:
+- SigV4: []
+tags:
+- name: HybridJobs
+  description: Hybrid quantum-classical job orchestration.
+paths:
+  /job:
+    post:
+      summary: AWS Braket Create A Hybrid Job
+      description: 'Create a hybrid job that runs a containerized algorithm against a designated QPU or simulator. Specifies the container image (or script mode with an S3 entry point), the device, instance configuration (default ml.m5.xlarge), hyperparameters, input/output channels, IAM role, and stopping condition.
+
+        '
+      operationId: createJob
+      tags:
+      - HybridJobs
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateJobRequest'
+      responses:
+        '201':
+          description: Hybrid job created.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jobArn:
+                    type: string
+                    pattern: ^arn:aws[a-z\-]*:braket:[a-z0-9\-]+:[0-9]{12}:job/.*$
+        '400':
+          $ref: '#/components/responses/ValidationException'
+        '403':
+          $ref: '#/components/responses/AccessDeniedException'
+        '409':
+          $ref: '#/components/responses/ConflictException'
+        '410':
+          $ref: '#/components/responses/DeviceRetiredException'
+        '424':
+          $ref: '#/components/responses/DeviceOfflineException'
+        '402':
+          $ref: '#/components/responses/ServiceQuotaExceededException'
+        '429':
+          $ref: '#/components/responses/ThrottlingException'
+        '500':
+          $ref: '#/components/responses/InternalServiceException'
+  /job/{jobArn}:
+    get:
+      summary: AWS Braket Get A Hybrid Job
+      description: 'Retrieve the status, device, instance config, and checkpoint metadata for a hybrid job.
+
+        '
+      operationId: getJob
+      tags:
+      - HybridJobs
+      parameters:
+      - name: jobArn
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Hybrid job description.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Job'
+  /job/{jobArn}/cancel:
+    put:
+      summary: AWS Braket Cancel A Hybrid Job
+      description: Cancel a hybrid job that has not yet completed.
+      operationId: cancelJob
+      tags:
+      - HybridJobs
+      parameters:
+      - name: jobArn
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Cancellation accepted.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  cancellationStatus:
+                    type: string
+                    enum:
+                    - CANCELLING
+                    - CANCELLED
+                  jobArn:
+                    type: string
+  /jobs:
+    post:
+      summary: AWS Braket Search Hybrid Jobs
+      description: Search and list hybrid jobs by status, device, creation time, or tag.
+      operationId: searchJobs
+      tags:
+      - HybridJobs
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - filters
+              properties:
+                filters:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        enum:
+                        - jobName
+                        - status
+                        - device
+                        - createdAt
+                      operator:
+                        type: string
+                        enum:
+                        - EQUAL
+                        - BETWEEN
+                        - LT
+                        - LTE
+                        - GT
+                        - GTE
+                        - CONTAINS
+                      values:
+                        type: array
+                        items:
+                          type: string
+                maxResults:
+                  type: integer
+                  minimum: 1
+                  maximum: 100
+                nextToken:
+                  type: string
+      responses:
+        '200':
+          description: Job search results.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jobs:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/JobSummary'
+                  nextToken:
+                    type: string
+components:
+  responses:
+    DeviceOfflineException:
+      description: Device offline.
+      content:
+        application/json:
+          schema:
+            type: object
+    ThrottlingException:
+      description: Throttled.
+      content:
+        application/json:
+          schema:
+            type: object
+    AccessDeniedException:
+      description: Caller lacks the required IAM permission.
+      content:
+        application/json:
+          schema:
+            type: object
+    ServiceQuotaExceededException:
+      description: Quota or spending limit exceeded.
+      content:
+        application/json:
+          schema:
+            type: object
+    InternalServiceException:
+      description: Unexpected error.
+      content:
+        application/json:
+          schema:
+            type: object
+    ValidationException:
+      description: Validation failed.
+      content:
+        application/json:
+          schema:
+            type: object
+    ConflictException:
+      description: Conflicting state.
+      content:
+        application/json:
+          schema:
+            type: object
+    DeviceRetiredException:
+      description: Device retired.
+      content:
+        application/json:
+          schema:
+            type: object
+  schemas:
+    Job:
+      type: object
+      properties:
+        jobArn:
+          type: string
+        jobName:
+          type: string
+        status:
+          type: string
+          enum:
+          - QUEUED
+          - RUNNING
+          - COMPLETED
+          - FAILED
+          - CANCELLING
+          - CANCELLED
+        deviceConfig:
+          type: object
+          properties:
+            device:
+              type: string
+        instanceConfig:
+          type: object
+          properties:
+            instanceType:
+              type: string
+            instanceCount:
+              type: integer
+            volumeSizeInGb:
+              type: integer
+        algorithmSpecification:
+          type: object
+        roleArn:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        startedAt:
+          type: string
+          format: date-time
+        endedAt:
+          type: string
+          format: date-time
+        billableDuration:
+          type: integer
+          description: Billable seconds of instance time.
+        failureReason:
+          type: string
+        queueInfo:
+          type: object
+          properties:
+            queue:
+              type: string
+            position:
+              type: string
+        outputDataConfig:
+          type: object
+        checkpointConfig:
+          type: object
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+    JobSummary:
+      type: object
+      properties:
+        jobArn:
+          type: string
+        jobName:
+          type: string
+        status:
+          type: string
+        device:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        startedAt:
+          type: string
+          format: date-time
+        endedAt:
+          type: string
+          format: date-time
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+    CreateJobRequest:
+      type: object
+      required:
+      - algorithmSpecification
+      - clientToken
+      - deviceConfig
+      - instanceConfig
+      - jobName
+      - outputDataConfig
+      - roleArn
+      properties:
+        algorithmSpecification:
+          type: object
+          properties:
+            containerImage:
+              type: object
+              properties:
+                uri:
+                  type: string
+                  description: ECR URI for the algorithm container.
+            scriptModeConfig:
+              type: object
+              properties:
+                compressionType:
+                  type: string
+                  enum:
+                  - NONE
+                  - GZIP
+                entryPoint:
+                  type: string
+                s3Uri:
+                  type: string
+        associations:
+          type: array
+          maxItems: 1
+          items:
+            type: object
+            properties:
+              arn:
+                type: string
+              type:
+                type: string
+                enum:
+                - RESERVATION_TIME_WINDOW_ARN
+        checkpointConfig:
+          type: object
+          properties:
+            localPath:
+              type: string
+            s3Uri:
+              type: string
+        clientToken:
+          type: string
+          minLength: 1
+          maxLength: 64
+        deviceConfig:
+          type: object
+          required:
+          - device
+          properties:
+            device:
+              type: string
+              description: Device ARN for the QPU/simulator used by the job.
+        hyperParameters:
+          type: object
+          additionalProperties:
+            type: string
+        inputDataConfig:
+          type: array
+          maxItems: 20
+          items:
+            type: object
+            properties:
+              channelName:
+                type: string
+              contentType:
+                type: string
+              dataSource:
+                type: object
+                properties:
+                  s3DataSource:
+                    type: object
+                    properties:
+                      s3Uri:
+                        type: string
+        instanceConfig:
+          type: object
+          properties:
+            instanceCount:
+              type: integer
+              minimum: 1
+            instanceType:
+              type: string
+              description: SageMaker-compatible ML instance type (ml.m5.large, ml.m5.xlarge, ml.c5.4xlarge, ml.p3.8xlarge, etc.).
+              default: ml.m5.xlarge
+            volumeSizeInGb:
+              type: integer
+              minimum: 1
+        jobName:
+          type: string
+          pattern: ^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,50}$
+          minLength: 1
+          maxLength: 50
+        outputDataConfig:
+          type: object
+          properties:
+            kmsKeyId:
+              type: string
+            s3Path:
+              type: string
+        roleArn:
+          type: string
+          pattern: ^arn:aws[a-z\-]*:iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+$
+        stoppingCondition:
+          type: object
+          properties:
+            maxRuntimeInSeconds:
+              type: integer
+              minimum: 1
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+  securitySchemes:
+    SigV4:
+      type: apiKey
+      name: Authorization
+      in: header

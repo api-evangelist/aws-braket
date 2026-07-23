@@ -1,31 +1,25 @@
 openapi: 3.1.0
 info:
-  title: AWS Braket Tags API
-  description: >
-    Manage tags on Amazon Braket resources (quantum tasks, hybrid jobs, and
-    spending limits) for cost allocation, IAM ABAC, and organization. Tags are
-    propagated to AWS Cost Explorer and AWS Budgets and can be used to enforce
-    fine-grained IAM conditions on Braket resources.
+  title: AWS Braket Devices Tags API
+  description: 'Discover quantum devices available on Amazon Braket — QPUs from AQT, IonQ, IQM, QuEra, and Rigetti, plus AWS-managed on-demand simulators (SV1, DM1, TN1). Use GetDevice to retrieve provider capabilities, paradigm, queue state, native gate set, and topology for a single ARN; use SearchDevices to enumerate devices by status, provider, and type.
+
+    '
   version: 2019-09-01
   contact:
     name: AWS Support
     url: https://aws.amazon.com/contact-us/
-
 servers:
-  - url: https://braket.us-east-1.amazonaws.com
-    description: US East (N. Virginia)
-  - url: https://braket.us-west-2.amazonaws.com
-    description: US West (Oregon)
-  - url: https://braket.eu-north-1.amazonaws.com
-    description: EU (Stockholm)
-
+- url: https://braket.us-east-1.amazonaws.com
+  description: US East (N. Virginia)
+- url: https://braket.us-west-2.amazonaws.com
+  description: US West (Oregon)
+- url: https://braket.eu-north-1.amazonaws.com
+  description: EU (Stockholm)
 security:
-  - SigV4: []
-
+- SigV4: []
 tags:
-  - name: Tags
-    description: Tagging for Braket resources.
-
+- name: Tags
+  description: Tagging for Braket resources.
 paths:
   /tags/{resourceArn}:
     get:
@@ -33,12 +27,13 @@ paths:
       description: List all tags attached to a Braket resource.
       operationId: listTagsForResource
       tags:
-        - Tags
+      - Tags
       parameters:
-        - name: resourceArn
-          in: path
-          required: true
-          schema: { type: string }
+      - name: resourceArn
+        in: path
+        required: true
+        schema:
+          type: string
       responses:
         '200':
           description: Tag list.
@@ -49,29 +44,33 @@ paths:
                 properties:
                   tags:
                     type: object
-                    additionalProperties: { type: string }
+                    additionalProperties:
+                      type: string
     post:
       summary: AWS Braket Tag A Resource
       description: Add one or more tags to a Braket resource.
       operationId: tagResource
       tags:
-        - Tags
+      - Tags
       parameters:
-        - name: resourceArn
-          in: path
-          required: true
-          schema: { type: string }
+      - name: resourceArn
+        in: path
+        required: true
+        schema:
+          type: string
       requestBody:
         required: true
         content:
           application/json:
             schema:
               type: object
-              required: [tags]
+              required:
+              - tags
               properties:
                 tags:
                   type: object
-                  additionalProperties: { type: string }
+                  additionalProperties:
+                    type: string
       responses:
         '200':
           description: Tags applied.
@@ -80,23 +79,24 @@ paths:
       description: Remove one or more tag keys from a Braket resource.
       operationId: untagResource
       tags:
-        - Tags
+      - Tags
       parameters:
-        - name: resourceArn
-          in: path
-          required: true
-          schema: { type: string }
-        - name: tagKeys
-          in: query
-          required: true
-          explode: true
-          schema:
-            type: array
-            items: { type: string }
+      - name: resourceArn
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: tagKeys
+        in: query
+        required: true
+        explode: true
+        schema:
+          type: array
+          items:
+            type: string
       responses:
         '200':
           description: Tags removed.
-
 components:
   securitySchemes:
     SigV4:
