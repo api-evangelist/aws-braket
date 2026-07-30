@@ -1,133 +1,182 @@
 aid: aws-braket
 url: https://raw.githubusercontent.com/api-evangelist/aws-braket/refs/heads/main/apis.yml
 apis:
-  - aid: aws-braket:aws-braket-quantum-tasks-api
-    name: AWS Braket Quantum Tasks API
-    tags:
-      - Quantum Computing
-      - Quantum Tasks
-      - AWS
-      - OpenQASM
-    humanURL: https://docs.aws.amazon.com/braket/latest/APIReference/API_CreateQuantumTask.html
-    properties:
-      - url: https://docs.aws.amazon.com/braket/latest/APIReference/API_CreateQuantumTask.html
-        type: Documentation
-      - url: https://docs.aws.amazon.com/braket/latest/APIReference/API_GetQuantumTask.html
-        type: Documentation
-      - url: https://docs.aws.amazon.com/braket/latest/APIReference/API_CancelQuantumTask.html
-        type: Documentation
-      - url: https://docs.aws.amazon.com/braket/latest/APIReference/API_SearchQuantumTasks.html
-        type: Documentation
-      - url: openapi/aws-braket-quantum-tasks-api-openapi.yml
-        type: OpenAPI
-      - url: json-schema/aws-braket-quantum-task-schema.json
-        type: JSONSchema
-      - url: json-structure/aws-braket-quantum-task-structure.json
-        type: JSONStructure
-      - url: json-ld/aws-braket-context.jsonld
-        type: JSONLD
-      - url: examples/aws-braket-create-quantum-task-example.json
-        type: Examples
-    description: >-
-      Create, retrieve, search, and cancel quantum tasks on Amazon Braket. A quantum task submits a single OpenQASM 3,
-      ProgramSet, or Analog Hamiltonian Simulation program to a target QPU or simulator device with a chosen shot count;
-      result files are written to a customer S3 location.
-  - aid: aws-braket:aws-braket-devices-api
-    name: AWS Braket Devices API
-    tags:
-      - Quantum Computing
-      - Devices
-      - QPU
-      - Simulator
-      - AWS
-    humanURL: https://docs.aws.amazon.com/braket/latest/APIReference/API_GetDevice.html
-    properties:
-      - url: https://docs.aws.amazon.com/braket/latest/APIReference/API_GetDevice.html
-        type: Documentation
-      - url: https://docs.aws.amazon.com/braket/latest/APIReference/API_SearchDevices.html
-        type: Documentation
-      - url: https://docs.aws.amazon.com/braket/latest/developerguide/braket-devices.html
-        type: Documentation
-      - url: openapi/aws-braket-devices-api-openapi.yml
-        type: OpenAPI
-      - url: json-schema/aws-braket-device-schema.json
-        type: JSONSchema
-      - url: examples/aws-braket-get-device-example.json
-        type: Examples
-    description: >-
-      Discover the QPU and simulator devices available on Amazon Braket. Returns device ARN, provider (AQT, IonQ, IQM,
-      QuEra, Rigetti, Amazon), status (ONLINE/OFFLINE/RETIRED), queue depth, paradigm (gate-based or AHS), native gate
-      set, and topology via deviceCapabilities.
-  - aid: aws-braket:aws-braket-hybrid-jobs-api
-    name: AWS Braket Hybrid Jobs API
-    tags:
-      - Quantum Computing
-      - Hybrid Jobs
-      - VQE
-      - QAOA
-      - AWS
-    humanURL: https://docs.aws.amazon.com/braket/latest/APIReference/API_CreateJob.html
-    properties:
-      - url: https://docs.aws.amazon.com/braket/latest/APIReference/API_CreateJob.html
-        type: Documentation
-      - url: https://docs.aws.amazon.com/braket/latest/APIReference/API_GetJob.html
-        type: Documentation
-      - url: https://docs.aws.amazon.com/braket/latest/APIReference/API_CancelJob.html
-        type: Documentation
-      - url: https://docs.aws.amazon.com/braket/latest/APIReference/API_SearchJobs.html
-        type: Documentation
-      - url: openapi/aws-braket-hybrid-jobs-api-openapi.yml
-        type: OpenAPI
-      - url: json-schema/aws-braket-hybrid-job-schema.json
-        type: JSONSchema
-      - url: examples/aws-braket-create-hybrid-job-example.json
-        type: Examples
-    description: >-
-      Orchestrate hybrid quantum-classical algorithms. A hybrid job runs a container or script-mode entry point on
-      ML-class EC2 instances while consuming priority QPU/simulator capacity through the Braket service. Use for
-      variational algorithms (VQE, QAOA, QML).
-  - aid: aws-braket:aws-braket-spending-limits-api
-    name: AWS Braket Spending Limits API
-    tags:
-      - Quantum Computing
-      - Spending Limits
-      - FinOps
-      - AWS
-    humanURL: https://docs.aws.amazon.com/braket/latest/developerguide/braket-pricing.html
-    properties:
-      - url: https://docs.aws.amazon.com/braket/latest/developerguide/braket-pricing.html
-        type: Documentation
-      - url: https://docs.aws.amazon.com/braket/latest/APIReference/API_CreateSpendingLimit.html
-        type: Documentation
-      - url: openapi/aws-braket-spending-limits-api-openapi.yml
-        type: OpenAPI
-      - url: examples/aws-braket-create-spending-limit-example.json
-        type: Examples
-    description: >-
-      Opt-in per-device cost ceilings that gate CreateQuantumTask at the API. Spending limits validate each request
-      against remaining budget (spending limit minus current and queued spend) and reject submissions whose estimated
-      cost would exceed the cap. Applies to on-demand and hybrid-job QPU tasks only.
-  - aid: aws-braket:aws-braket-tags-api
-    name: AWS Braket Tags API
-    tags:
-      - Quantum Computing
-      - Tags
-      - FinOps
-      - AWS
-    humanURL: https://docs.aws.amazon.com/braket/latest/APIReference/API_ListTagsForResource.html
-    properties:
-      - url: https://docs.aws.amazon.com/braket/latest/APIReference/API_ListTagsForResource.html
-        type: Documentation
-      - url: https://docs.aws.amazon.com/braket/latest/APIReference/API_TagResource.html
-        type: Documentation
-      - url: https://docs.aws.amazon.com/braket/latest/APIReference/API_UntagResource.html
-        type: Documentation
-      - url: openapi/aws-braket-tags-api-openapi.yml
-        type: OpenAPI
-    description: >-
-      Tag quantum tasks, hybrid jobs, and spending limits for cost allocation, IAM ABAC, and resource organization. Tags
-      propagate to AWS Cost Explorer and AWS Budgets and can be referenced in IAM condition keys to enforce fine-grained
-      access controls.
+- aid: aws-braket:aws-braket-devices-api
+  name: AWS Braket Devices API
+  tags:
+  - Quantum Computing
+  - Devices
+  - QPU
+  - Simulator
+  - AWS
+  humanURL: https://docs.aws.amazon.com/braket/latest/APIReference/API_GetDevice.html
+  properties:
+  - url: https://docs.aws.amazon.com/braket/latest/APIReference/API_GetDevice.html
+    type: Documentation
+  - url: https://docs.aws.amazon.com/braket/latest/APIReference/API_SearchDevices.html
+    type: Documentation
+  - url: https://docs.aws.amazon.com/braket/latest/developerguide/braket-devices.html
+    type: Documentation
+  - url: openapi/aws-braket-devices-api-openapi.yml
+    type: OpenAPI
+  - url: json-schema/aws-braket-device-schema.json
+    type: JSONSchema
+  - url: examples/aws-braket-get-device-example.json
+    type: Examples
+  description: >-
+    Discover the QPU and simulator devices available on Amazon Braket. Returns device ARN, provider (AQT,
+    IonQ, IQM, QuEra, Rigetti, Amazon), status (ONLINE/OFFLINE/RETIRED), queue depth, paradigm (gate-based
+    or AHS), native gate set, and topology via deviceCapabilities.
+- aid: aws-braket:aws-braket-tags-api
+  name: AWS Braket Tags API
+  tags:
+  - Quantum Computing
+  - Tags
+  - FinOps
+  - AWS
+  humanURL: https://docs.aws.amazon.com/braket/latest/APIReference/API_ListTagsForResource.html
+  properties:
+  - url: https://docs.aws.amazon.com/braket/latest/APIReference/API_ListTagsForResource.html
+    type: Documentation
+  - url: https://docs.aws.amazon.com/braket/latest/APIReference/API_TagResource.html
+    type: Documentation
+  - url: https://docs.aws.amazon.com/braket/latest/APIReference/API_UntagResource.html
+    type: Documentation
+  - url: openapi/aws-braket-tags-api-openapi.yml
+    type: OpenAPI
+  description: >-
+    Tag quantum tasks, hybrid jobs, and spending limits for cost allocation, IAM ABAC, and resource organization.
+    Tags propagate to AWS Cost Explorer and AWS Budgets and can be referenced in IAM condition keys to
+    enforce fine-grained access controls.
+- aid: aws-braket:aws-braket-hybridjobs-api
+  name: AWS Braket HybridJobs API
+  description: Hybrid quantum-classical job orchestration.
+  humanURL: https://docs.aws.amazon.com/braket/latest/APIReference/API_CreateQuantumTask.html
+  tags:
+  - HybridJobs
+  properties:
+  - type: OpenAPI
+    url: openapi/aws-braket-hybridjobs-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/braket/latest/APIReference/API_CreateQuantumTask.html
+  - type: Documentation
+    url: https://docs.aws.amazon.com/braket/latest/APIReference/API_GetQuantumTask.html
+  - type: Documentation
+    url: https://docs.aws.amazon.com/braket/latest/APIReference/API_CancelQuantumTask.html
+  - type: Documentation
+    url: https://docs.aws.amazon.com/braket/latest/APIReference/API_SearchQuantumTasks.html
+  - type: JSONSchema
+    url: json-schema/aws-braket-quantum-task-schema.json
+  - type: JSONStructure
+    url: json-structure/aws-braket-quantum-task-structure.json
+  - type: JSONLD
+    url: json-ld/aws-braket-context.jsonld
+  - type: Examples
+    url: examples/aws-braket-create-quantum-task-example.json
+  - type: Documentation
+    url: https://docs.aws.amazon.com/braket/latest/APIReference/API_CreateJob.html
+  - type: Documentation
+    url: https://docs.aws.amazon.com/braket/latest/APIReference/API_GetJob.html
+  - type: Documentation
+    url: https://docs.aws.amazon.com/braket/latest/APIReference/API_CancelJob.html
+  - type: Documentation
+    url: https://docs.aws.amazon.com/braket/latest/APIReference/API_SearchJobs.html
+  - type: JSONSchema
+    url: json-schema/aws-braket-hybrid-job-schema.json
+  - type: Examples
+    url: examples/aws-braket-create-hybrid-job-example.json
+  - type: Documentation
+    url: https://docs.aws.amazon.com/braket/latest/developerguide/braket-pricing.html
+  - type: Documentation
+    url: https://docs.aws.amazon.com/braket/latest/APIReference/API_CreateSpendingLimit.html
+  - type: Examples
+    url: examples/aws-braket-create-spending-limit-example.json
+- aid: aws-braket:aws-braket-quantumtasks-api
+  name: AWS Braket QuantumTasks API
+  description: Submit and manage quantum task executions on Amazon Braket devices.
+  humanURL: https://docs.aws.amazon.com/braket/latest/APIReference/API_CreateQuantumTask.html
+  tags:
+  - QuantumTasks
+  properties:
+  - type: OpenAPI
+    url: openapi/aws-braket-quantumtasks-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/braket/latest/APIReference/API_CreateQuantumTask.html
+  - type: Documentation
+    url: https://docs.aws.amazon.com/braket/latest/APIReference/API_GetQuantumTask.html
+  - type: Documentation
+    url: https://docs.aws.amazon.com/braket/latest/APIReference/API_CancelQuantumTask.html
+  - type: Documentation
+    url: https://docs.aws.amazon.com/braket/latest/APIReference/API_SearchQuantumTasks.html
+  - type: JSONSchema
+    url: json-schema/aws-braket-quantum-task-schema.json
+  - type: JSONStructure
+    url: json-structure/aws-braket-quantum-task-structure.json
+  - type: JSONLD
+    url: json-ld/aws-braket-context.jsonld
+  - type: Examples
+    url: examples/aws-braket-create-quantum-task-example.json
+  - type: Documentation
+    url: https://docs.aws.amazon.com/braket/latest/APIReference/API_CreateJob.html
+  - type: Documentation
+    url: https://docs.aws.amazon.com/braket/latest/APIReference/API_GetJob.html
+  - type: Documentation
+    url: https://docs.aws.amazon.com/braket/latest/APIReference/API_CancelJob.html
+  - type: Documentation
+    url: https://docs.aws.amazon.com/braket/latest/APIReference/API_SearchJobs.html
+  - type: JSONSchema
+    url: json-schema/aws-braket-hybrid-job-schema.json
+  - type: Examples
+    url: examples/aws-braket-create-hybrid-job-example.json
+  - type: Documentation
+    url: https://docs.aws.amazon.com/braket/latest/developerguide/braket-pricing.html
+  - type: Documentation
+    url: https://docs.aws.amazon.com/braket/latest/APIReference/API_CreateSpendingLimit.html
+  - type: Examples
+    url: examples/aws-braket-create-spending-limit-example.json
+- aid: aws-braket:aws-braket-spendinglimits-api
+  name: AWS Braket SpendingLimits API
+  description: Per-device opt-in cost controls for QPU tasks.
+  humanURL: https://docs.aws.amazon.com/braket/latest/APIReference/API_CreateQuantumTask.html
+  tags:
+  - SpendingLimits
+  properties:
+  - type: OpenAPI
+    url: openapi/aws-braket-spendinglimits-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/braket/latest/APIReference/API_CreateQuantumTask.html
+  - type: Documentation
+    url: https://docs.aws.amazon.com/braket/latest/APIReference/API_GetQuantumTask.html
+  - type: Documentation
+    url: https://docs.aws.amazon.com/braket/latest/APIReference/API_CancelQuantumTask.html
+  - type: Documentation
+    url: https://docs.aws.amazon.com/braket/latest/APIReference/API_SearchQuantumTasks.html
+  - type: JSONSchema
+    url: json-schema/aws-braket-quantum-task-schema.json
+  - type: JSONStructure
+    url: json-structure/aws-braket-quantum-task-structure.json
+  - type: JSONLD
+    url: json-ld/aws-braket-context.jsonld
+  - type: Examples
+    url: examples/aws-braket-create-quantum-task-example.json
+  - type: Documentation
+    url: https://docs.aws.amazon.com/braket/latest/APIReference/API_CreateJob.html
+  - type: Documentation
+    url: https://docs.aws.amazon.com/braket/latest/APIReference/API_GetJob.html
+  - type: Documentation
+    url: https://docs.aws.amazon.com/braket/latest/APIReference/API_CancelJob.html
+  - type: Documentation
+    url: https://docs.aws.amazon.com/braket/latest/APIReference/API_SearchJobs.html
+  - type: JSONSchema
+    url: json-schema/aws-braket-hybrid-job-schema.json
+  - type: Examples
+    url: examples/aws-braket-create-hybrid-job-example.json
+  - type: Documentation
+    url: https://docs.aws.amazon.com/braket/latest/developerguide/braket-pricing.html
+  - type: Documentation
+    url: https://docs.aws.amazon.com/braket/latest/APIReference/API_CreateSpendingLimit.html
+  - type: Examples
+    url: examples/aws-braket-create-spending-limit-example.json
 name: AWS Braket
 tags:
   - Quantum Computing
@@ -140,9 +189,24 @@ tags:
   - Qiskit
   - Quantum
 kind: contract
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/aws-braket.png
 access: 3rd-Party
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/aws-braket/overview
   - type: AgenticAccess
     url: agentic-access/aws-braket-agentic-access.yml
   - type: TrustCenter
