@@ -1,0 +1,342 @@
+{
+  "info": {
+    "_postman_id": "03e3f4a1-6c12-47cd-bd97-20780b40e413",
+    "name": "AWS Braket Devices Tags API",
+    "description": "Discover quantum devices available on Amazon Braket \u2014 QPUs from AQT, IonQ, IQM, QuEra, and Rigetti, plus AWS-managed on-demand simulators (SV1, DM1, TN1). Use GetDevice to retrieve provider capabilities, paradigm, queue state, native gate set, and topology for a single ARN; use SearchDevices to enumerate devices by status, provider, and type.\n\n\nContact Support:\n Name: AWS Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:06:55.000Z",
+    "updatedAt": "2026-07-28T01:06:55.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-03e3f4a1-6c12-47cd-bd97-20780b40e413"
+  },
+  "item": [
+    {
+      "name": "tags",
+      "item": [
+        {
+          "name": "{resourceArn}",
+          "item": [
+            {
+              "name": "AWS Braket List Tags For Resource",
+              "id": "faa7b291-0c12-4ae2-b0e7-0ac32c21f8d2",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/tags/:resourceArn",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "tags",
+                    ":resourceArn"
+                  ],
+                  "variable": [
+                    {
+                      "id": "ac5ec758-27c9-40b9-bd1d-dbcd231b68a1",
+                      "key": "resourceArn",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "List all tags attached to a Braket resource."
+              },
+              "response": [
+                {
+                  "id": "44871f30-d6dd-43c1-aa52-ac7650ac3d90",
+                  "name": "Tag list.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tags/:resourceArn",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tags",
+                        ":resourceArn"
+                      ],
+                      "variable": [
+                        {
+                          "key": "resourceArn"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"tags\": {\n    \"adipisicing_5\": \"<string>\",\n    \"Ut_65\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:06:56.000Z",
+                  "updatedAt": "2026-07-28T01:06:56.000Z",
+                  "uid": "35240-44871f30-d6dd-43c1-aa52-ac7650ac3d90"
+                }
+              ],
+              "createdAt": "2026-07-28T01:06:56.000Z",
+              "updatedAt": "2026-07-28T01:06:56.000Z",
+              "uid": "35240-faa7b291-0c12-4ae2-b0e7-0ac32c21f8d2"
+            },
+            {
+              "name": "AWS Braket Tag A Resource",
+              "id": "09f0aa67-3370-4247-aba2-6972ce58b3ca",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tags\": {\n    \"sunt_556\": \"<string>\",\n    \"proidentf_\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/tags/:resourceArn",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "tags",
+                    ":resourceArn"
+                  ],
+                  "variable": [
+                    {
+                      "id": "8d40aa37-674d-4077-a145-b03a4b218596",
+                      "key": "resourceArn",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Add one or more tags to a Braket resource."
+              },
+              "response": [
+                {
+                  "id": "ff4df93c-fb78-46c8-a8f1-ac5da5573e6f",
+                  "name": "Tags applied.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"tags\": {\n    \"sunt_556\": \"<string>\",\n    \"proidentf_\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/tags/:resourceArn",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tags",
+                        ":resourceArn"
+                      ],
+                      "variable": [
+                        {
+                          "key": "resourceArn"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:06:56.000Z",
+                  "updatedAt": "2026-07-28T01:06:56.000Z",
+                  "uid": "35240-ff4df93c-fb78-46c8-a8f1-ac5da5573e6f"
+                }
+              ],
+              "createdAt": "2026-07-28T01:06:56.000Z",
+              "updatedAt": "2026-07-28T01:06:56.000Z",
+              "uid": "35240-09f0aa67-3370-4247-aba2-6972ce58b3ca"
+            },
+            {
+              "name": "AWS Braket Untag A Resource",
+              "id": "59b21b50-6366-430f-a25a-d68978d8d6c4",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/tags/:resourceArn?tagKeys=<string>&tagKeys=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "tags",
+                    ":resourceArn"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "tagKeys",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) ",
+                      "key": "tagKeys",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "1e90723d-12a6-496c-8be4-9a3559c423e6",
+                      "key": "resourceArn",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Remove one or more tag keys from a Braket resource."
+              },
+              "response": [
+                {
+                  "id": "95ed5b2b-36d4-449d-91e0-231dcbdcc98b",
+                  "name": "Tags removed.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tags/:resourceArn?tagKeys=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tags",
+                        ":resourceArn"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "tagKeys",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "resourceArn"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:06:56.000Z",
+                  "updatedAt": "2026-07-28T01:06:56.000Z",
+                  "uid": "35240-95ed5b2b-36d4-449d-91e0-231dcbdcc98b"
+                }
+              ],
+              "createdAt": "2026-07-28T01:06:56.000Z",
+              "updatedAt": "2026-07-28T01:06:56.000Z",
+              "uid": "35240-59b21b50-6366-430f-a25a-d68978d8d6c4"
+            }
+          ],
+          "id": "e644aea3-db1a-4fbd-b0c3-b3b011c201c2",
+          "createdAt": "2026-07-28T01:06:56.000Z",
+          "updatedAt": "2026-07-28T01:06:56.000Z",
+          "uid": "35240-e644aea3-db1a-4fbd-b0c3-b3b011c201c2"
+        }
+      ],
+      "id": "7edbf020-3ee6-4ced-94e0-b579946bb7da",
+      "createdAt": "2026-07-28T01:06:56.000Z",
+      "updatedAt": "2026-07-28T01:06:56.000Z",
+      "uid": "35240-7edbf020-3ee6-4ced-94e0-b579946bb7da"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://braket.us-east-1.amazonaws.com"
+    }
+  ]
+}

@@ -1,0 +1,496 @@
+{
+  "info": {
+    "_postman_id": "6dc542a9-b1a8-46f1-8918-4857675a247d",
+    "name": "AWS Braket Devices API",
+    "description": "Discover quantum devices available on Amazon Braket \u2014 QPUs from AQT, IonQ, IQM, QuEra, and Rigetti, plus AWS-managed on-demand simulators (SV1, DM1, TN1). Use GetDevice to retrieve provider capabilities, paradigm, queue state, native gate set, and topology for a single ARN; use SearchDevices to enumerate devices by status, provider, and type.\n\n\nContact Support:\n Name: AWS Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:06:54.000Z",
+    "updatedAt": "2026-07-28T01:06:54.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-6dc542a9-b1a8-46f1-8918-4857675a247d"
+  },
+  "item": [
+    {
+      "name": "device",
+      "item": [
+        {
+          "name": "{deviceArn}",
+          "item": [
+            {
+              "name": "AWS Braket Get A Device",
+              "id": "a951628c-1a99-465d-a37f-944169f2a7e2",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/device/:deviceArn",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "device",
+                    ":deviceArn"
+                  ],
+                  "variable": [
+                    {
+                      "id": "e5ea9be1-f0af-442e-acc5-5d47927af4ea",
+                      "key": "deviceArn",
+                      "value": "<string>",
+                      "description": "(Required) ARN of the device, case sensitive (e.g. arn:aws:braket:us-east-1::device/qpu/ionq/Forte-1)."
+                    }
+                  ]
+                },
+                "description": "Retrieve information about a single Amazon Braket device, including its provider, status (ONLINE / OFFLINE / RETIRED), queue size, and a JSON deviceCapabilities document describing supported gates, qubit topology, connectivity, paradigm, and calibration data.\n"
+              },
+              "response": [
+                {
+                  "id": "79cce580-263d-4a47-b92d-0e327b1909f0",
+                  "name": "Device description.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/device/:deviceArn",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "device",
+                        ":deviceArn"
+                      ],
+                      "variable": [
+                        {
+                          "key": "deviceArn"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"deviceArn\": \"<string>\",\n  \"deviceName\": \"<string>\",\n  \"providerName\": \"<string>\",\n  \"deviceStatus\": \"RETIRED\",\n  \"deviceType\": \"QPU\",\n  \"deviceCapabilities\": \"<string>\",\n  \"deviceQueueInfo\": [\n    {\n      \"queue\": \"JOBS_QUEUE\",\n      \"queuePriority\": \"Normal\",\n      \"queueSize\": \"<string>\"\n    },\n    {\n      \"queue\": \"JOBS_QUEUE\",\n      \"queuePriority\": \"Normal\",\n      \"queueSize\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:06:55.000Z",
+                  "updatedAt": "2026-07-28T01:06:55.000Z",
+                  "uid": "35240-79cce580-263d-4a47-b92d-0e327b1909f0"
+                },
+                {
+                  "id": "9c4f22db-c06d-4888-8054-7d63fd5a8420",
+                  "name": "Request validation failed.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/device/:deviceArn",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "device",
+                        ":deviceArn"
+                      ],
+                      "variable": [
+                        {
+                          "key": "deviceArn"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T01:06:55.000Z",
+                  "updatedAt": "2026-07-28T01:06:55.000Z",
+                  "uid": "35240-9c4f22db-c06d-4888-8054-7d63fd5a8420"
+                },
+                {
+                  "id": "59f29c08-aeb7-4af2-b623-1afc710b9613",
+                  "name": "Caller lacks the required IAM permission.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/device/:deviceArn",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "device",
+                        ":deviceArn"
+                      ],
+                      "variable": [
+                        {
+                          "key": "deviceArn"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T01:06:55.000Z",
+                  "updatedAt": "2026-07-28T01:06:55.000Z",
+                  "uid": "35240-59f29c08-aeb7-4af2-b623-1afc710b9613"
+                },
+                {
+                  "id": "c495b6a3-afbc-4b7c-bcc6-8195966b06c5",
+                  "name": "The requested device does not exist.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/device/:deviceArn",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "device",
+                        ":deviceArn"
+                      ],
+                      "variable": [
+                        {
+                          "key": "deviceArn"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T01:06:55.000Z",
+                  "updatedAt": "2026-07-28T01:06:55.000Z",
+                  "uid": "35240-c495b6a3-afbc-4b7c-bcc6-8195966b06c5"
+                },
+                {
+                  "id": "cc62e62a-2a67-4e09-a4a2-f0a582cedb40",
+                  "name": "Throttled.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/device/:deviceArn",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "device",
+                        ":deviceArn"
+                      ],
+                      "variable": [
+                        {
+                          "key": "deviceArn"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T01:06:55.000Z",
+                  "updatedAt": "2026-07-28T01:06:55.000Z",
+                  "uid": "35240-cc62e62a-2a67-4e09-a4a2-f0a582cedb40"
+                },
+                {
+                  "id": "6cfc8601-2f85-4db1-bb5a-af415d393e91",
+                  "name": "Unexpected error.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/device/:deviceArn",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "device",
+                        ":deviceArn"
+                      ],
+                      "variable": [
+                        {
+                          "key": "deviceArn"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T01:06:55.000Z",
+                  "updatedAt": "2026-07-28T01:06:55.000Z",
+                  "uid": "35240-6cfc8601-2f85-4db1-bb5a-af415d393e91"
+                }
+              ],
+              "createdAt": "2026-07-28T01:06:55.000Z",
+              "updatedAt": "2026-07-28T01:06:55.000Z",
+              "uid": "35240-a951628c-1a99-465d-a37f-944169f2a7e2"
+            }
+          ],
+          "id": "1ea658a9-ac34-47d9-b9c1-47767301767f",
+          "createdAt": "2026-07-28T01:06:55.000Z",
+          "updatedAt": "2026-07-28T01:06:55.000Z",
+          "uid": "35240-1ea658a9-ac34-47d9-b9c1-47767301767f"
+        }
+      ],
+      "id": "d73188f8-eda7-4353-9898-92875e81e82d",
+      "createdAt": "2026-07-28T01:06:55.000Z",
+      "updatedAt": "2026-07-28T01:06:55.000Z",
+      "uid": "35240-d73188f8-eda7-4353-9898-92875e81e82d"
+    },
+    {
+      "name": "devices",
+      "item": [
+        {
+          "name": "AWS Braket Search Devices",
+          "id": "3583e02e-2074-4112-ae5c-f1336134ffda",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"filters\": [\n    {\n      \"name\": \"providerName\",\n      \"values\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"name\": \"deviceType\",\n      \"values\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"maxResults\": \"<integer>\",\n  \"nextToken\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/devices",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "devices"
+              ]
+            },
+            "description": "Search the catalog of Amazon Braket devices available in the calling region. Supports filtering by provider name, device ARN, name, type, and status.\n"
+          },
+          "response": [
+            {
+              "id": "6520bd1c-39c1-429c-8199-ba54695a9b9d",
+              "name": "Device search results.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filters\": [\n    {\n      \"name\": \"providerName\",\n      \"values\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"name\": \"deviceType\",\n      \"values\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"maxResults\": \"<integer>\",\n  \"nextToken\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/devices",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "devices"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"devices\": [\n    {\n      \"deviceArn\": \"<string>\",\n      \"deviceName\": \"<string>\",\n      \"providerName\": \"<string>\",\n      \"deviceStatus\": \"OFFLINE\",\n      \"deviceType\": \"QPU\"\n    },\n    {\n      \"deviceArn\": \"<string>\",\n      \"deviceName\": \"<string>\",\n      \"providerName\": \"<string>\",\n      \"deviceStatus\": \"OFFLINE\",\n      \"deviceType\": \"SIMULATOR\"\n    }\n  ],\n  \"nextToken\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:06:55.000Z",
+              "updatedAt": "2026-07-28T01:06:55.000Z",
+              "uid": "35240-6520bd1c-39c1-429c-8199-ba54695a9b9d"
+            }
+          ],
+          "createdAt": "2026-07-28T01:06:55.000Z",
+          "updatedAt": "2026-07-28T01:06:55.000Z",
+          "uid": "35240-3583e02e-2074-4112-ae5c-f1336134ffda"
+        }
+      ],
+      "id": "994f62ca-fb9a-4d8a-885a-e76e79ec0ae9",
+      "createdAt": "2026-07-28T01:06:55.000Z",
+      "updatedAt": "2026-07-28T01:06:55.000Z",
+      "uid": "35240-994f62ca-fb9a-4d8a-885a-e76e79ec0ae9"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://braket.us-east-1.amazonaws.com"
+    }
+  ]
+}

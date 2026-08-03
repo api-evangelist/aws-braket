@@ -1,0 +1,24 @@
+{
+  "provider": "aws-braket",
+  "sources": [
+    "aws-braket-devices-api-openapi.yml",
+    "aws-braket-hybridjobs-api-openapi.yml",
+    "aws-braket-quantumtasks-api-openapi.yml",
+    "aws-braket-spendinglimits-api-openapi.yml",
+    "aws-braket-tags-api-openapi.yml"
+  ],
+  "outputs": [
+    "aws-braket-devices-api-openapi.yml",
+    "aws-braket-hybridjobs-api-openapi.yml",
+    "aws-braket-quantumtasks-api-openapi.yml",
+    "aws-braket-spendinglimits-api-openapi.yml",
+    "aws-braket-tags-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [
+    "aws-braket-quantumtasks-api-openapi.yml: dangling $ref: #/components/schemas/Error"
+  ],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

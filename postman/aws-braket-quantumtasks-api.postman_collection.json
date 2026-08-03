@@ -1,0 +1,1494 @@
+{
+  "info": {
+    "_postman_id": "296ca2d1-3bc3-411b-91e1-641f25aa6f71",
+    "name": "AWS Braket Devices QuantumTasks API",
+    "description": "Discover quantum devices available on Amazon Braket \u2014 QPUs from AQT, IonQ, IQM, QuEra, and Rigetti, plus AWS-managed on-demand simulators (SV1, DM1, TN1). Use GetDevice to retrieve provider capabilities, paradigm, queue state, native gate set, and topology for a single ARN; use SearchDevices to enumerate devices by status, provider, and type.\n\n\nContact Support:\n Name: AWS Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:07:00.000Z",
+    "updatedAt": "2026-07-28T01:07:00.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-296ca2d1-3bc3-411b-91e1-641f25aa6f71"
+  },
+  "item": [
+    {
+      "name": "quantum-task",
+      "item": [
+        {
+          "name": "{quantumTaskArn}",
+          "item": [
+            {
+              "name": "cancel",
+              "item": [
+                {
+                  "name": "AWS Braket Cancel A Quantum Task",
+                  "id": "efedc1b0-2dab-4d62-9fee-7ce54a6c8840",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"clientToken\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/quantum-task/:quantumTaskArn/cancel",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "quantum-task",
+                        ":quantumTaskArn",
+                        "cancel"
+                      ],
+                      "variable": [
+                        {
+                          "id": "d6347ac3-4834-4cfc-ac7d-c6a3413b3db3",
+                          "key": "quantumTaskArn",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Cancel a quantum task that has not yet completed. Tasks already running on a QPU may continue until the next coherent stopping point.\n"
+                  },
+                  "response": [
+                    {
+                      "id": "8b38ffef-5113-4c78-a34d-107fa819b4c0",
+                      "name": "Cancellation accepted.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"clientToken\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/quantum-task/:quantumTaskArn/cancel",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "quantum-task",
+                            ":quantumTaskArn",
+                            "cancel"
+                          ],
+                          "variable": [
+                            {
+                              "key": "quantumTaskArn"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"cancellationStatus\": \"CANCELLED\",\n  \"quantumTaskArn\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:07:01.000Z",
+                      "updatedAt": "2026-07-28T01:07:01.000Z",
+                      "uid": "35240-8b38ffef-5113-4c78-a34d-107fa819b4c0"
+                    },
+                    {
+                      "id": "2fd7d57b-e0cf-4c76-b78f-aef4ee3ed110",
+                      "name": "The input request failed validation.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"clientToken\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/quantum-task/:quantumTaskArn/cancel",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "quantum-task",
+                            ":quantumTaskArn",
+                            "cancel"
+                          ],
+                          "variable": [
+                            {
+                              "key": "quantumTaskArn"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"value\": \"reference #/components/schemas/Error not found in the OpenAPI spec\"\n}",
+                      "createdAt": "2026-07-28T01:07:01.000Z",
+                      "updatedAt": "2026-07-28T01:07:01.000Z",
+                      "uid": "35240-2fd7d57b-e0cf-4c76-b78f-aef4ee3ed110"
+                    },
+                    {
+                      "id": "de9e6246-08f5-4575-b700-1555e718ee57",
+                      "name": "Caller lacks the required IAM permission.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"clientToken\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/quantum-task/:quantumTaskArn/cancel",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "quantum-task",
+                            ":quantumTaskArn",
+                            "cancel"
+                          ],
+                          "variable": [
+                            {
+                              "key": "quantumTaskArn"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"value\": \"reference #/components/schemas/Error not found in the OpenAPI spec\"\n}",
+                      "createdAt": "2026-07-28T01:07:01.000Z",
+                      "updatedAt": "2026-07-28T01:07:01.000Z",
+                      "uid": "35240-de9e6246-08f5-4575-b700-1555e718ee57"
+                    },
+                    {
+                      "id": "50fb6340-f8b9-4b83-a038-6e6180560d83",
+                      "name": "The resource does not exist.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"clientToken\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/quantum-task/:quantumTaskArn/cancel",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "quantum-task",
+                            ":quantumTaskArn",
+                            "cancel"
+                          ],
+                          "variable": [
+                            {
+                              "key": "quantumTaskArn"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"value\": \"reference #/components/schemas/Error not found in the OpenAPI spec\"\n}",
+                      "createdAt": "2026-07-28T01:07:01.000Z",
+                      "updatedAt": "2026-07-28T01:07:01.000Z",
+                      "uid": "35240-50fb6340-f8b9-4b83-a038-6e6180560d83"
+                    },
+                    {
+                      "id": "78eb6415-482c-48e9-b06f-9da67596ace8",
+                      "name": "Conflicting state for the resource.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"clientToken\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/quantum-task/:quantumTaskArn/cancel",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "quantum-task",
+                            ":quantumTaskArn",
+                            "cancel"
+                          ],
+                          "variable": [
+                            {
+                              "key": "quantumTaskArn"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Conflict",
+                      "code": 409,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"value\": \"reference #/components/schemas/Error not found in the OpenAPI spec\"\n}",
+                      "createdAt": "2026-07-28T01:07:01.000Z",
+                      "updatedAt": "2026-07-28T01:07:01.000Z",
+                      "uid": "35240-78eb6415-482c-48e9-b06f-9da67596ace8"
+                    },
+                    {
+                      "id": "f2cf3fbd-13a5-4d5d-87fd-255e9c81a9a0",
+                      "name": "The API throttling rate limit is exceeded.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"clientToken\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/quantum-task/:quantumTaskArn/cancel",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "quantum-task",
+                            ":quantumTaskArn",
+                            "cancel"
+                          ],
+                          "variable": [
+                            {
+                              "key": "quantumTaskArn"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"value\": \"reference #/components/schemas/Error not found in the OpenAPI spec\"\n}",
+                      "createdAt": "2026-07-28T01:07:01.000Z",
+                      "updatedAt": "2026-07-28T01:07:01.000Z",
+                      "uid": "35240-f2cf3fbd-13a5-4d5d-87fd-255e9c81a9a0"
+                    },
+                    {
+                      "id": "d9c9773e-36d5-4428-b798-ead60ecfa903",
+                      "name": "An unexpected service error.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"clientToken\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/quantum-task/:quantumTaskArn/cancel",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "quantum-task",
+                            ":quantumTaskArn",
+                            "cancel"
+                          ],
+                          "variable": [
+                            {
+                              "key": "quantumTaskArn"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"value\": \"reference #/components/schemas/Error not found in the OpenAPI spec\"\n}",
+                      "createdAt": "2026-07-28T01:07:01.000Z",
+                      "updatedAt": "2026-07-28T01:07:01.000Z",
+                      "uid": "35240-d9c9773e-36d5-4428-b798-ead60ecfa903"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:07:01.000Z",
+                  "updatedAt": "2026-07-28T01:07:01.000Z",
+                  "uid": "35240-efedc1b0-2dab-4d62-9fee-7ce54a6c8840"
+                }
+              ],
+              "id": "0aeb363d-cf80-49c0-89e7-c9e2559afe5d",
+              "createdAt": "2026-07-28T01:07:01.000Z",
+              "updatedAt": "2026-07-28T01:07:01.000Z",
+              "uid": "35240-0aeb363d-cf80-49c0-89e7-c9e2559afe5d"
+            },
+            {
+              "name": "AWS Braket Get A Quantum Task",
+              "id": "6ae08b9e-226b-400c-8b62-1e12e5792f28",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/quantum-task/:quantumTaskArn",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "quantum-task",
+                    ":quantumTaskArn"
+                  ],
+                  "variable": [
+                    {
+                      "id": "54ba090e-1438-4d49-93fd-423adf3e5088",
+                      "key": "quantumTaskArn",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Retrieve the current state, device, shot count, and result location for a quantum task identified by its ARN.\n"
+              },
+              "response": [
+                {
+                  "id": "488c936e-7060-4c24-af3d-248ed67fbb8c",
+                  "name": "Quantum task description.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/quantum-task/:quantumTaskArn",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "quantum-task",
+                        ":quantumTaskArn"
+                      ],
+                      "variable": [
+                        {
+                          "key": "quantumTaskArn"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"quantumTaskArn\": \"<string>\",\n  \"status\": \"QUEUED\",\n  \"deviceArn\": \"<string>\",\n  \"deviceParameters\": \"<string>\",\n  \"shots\": \"<long>\",\n  \"outputS3Bucket\": \"<string>\",\n  \"outputS3Directory\": \"<string>\",\n  \"createdAt\": \"<dateTime>\",\n  \"endedAt\": \"<dateTime>\",\n  \"failureReason\": \"<string>\",\n  \"jobArn\": \"<string>\",\n  \"queueInfo\": {\n    \"queue\": \"<string>\",\n    \"position\": \"<string>\"\n  },\n  \"tags\": {\n    \"in4a\": \"<string>\",\n    \"Ut6\": \"<string>\",\n    \"Ut_7\": \"<string>\",\n    \"in5\": \"<string>\",\n    \"mollit_c\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:07:01.000Z",
+                  "updatedAt": "2026-07-28T01:07:01.000Z",
+                  "uid": "35240-488c936e-7060-4c24-af3d-248ed67fbb8c"
+                },
+                {
+                  "id": "a9e856f3-f1a7-475a-bf8c-1c5609820082",
+                  "name": "The input request failed validation.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/quantum-task/:quantumTaskArn",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "quantum-task",
+                        ":quantumTaskArn"
+                      ],
+                      "variable": [
+                        {
+                          "key": "quantumTaskArn"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"value\": \"reference #/components/schemas/Error not found in the OpenAPI spec\"\n}",
+                  "createdAt": "2026-07-28T01:07:01.000Z",
+                  "updatedAt": "2026-07-28T01:07:01.000Z",
+                  "uid": "35240-a9e856f3-f1a7-475a-bf8c-1c5609820082"
+                },
+                {
+                  "id": "57ff5fdc-8fe2-4a1f-87c7-7f3af947f701",
+                  "name": "Caller lacks the required IAM permission.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/quantum-task/:quantumTaskArn",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "quantum-task",
+                        ":quantumTaskArn"
+                      ],
+                      "variable": [
+                        {
+                          "key": "quantumTaskArn"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"value\": \"reference #/components/schemas/Error not found in the OpenAPI spec\"\n}",
+                  "createdAt": "2026-07-28T01:07:01.000Z",
+                  "updatedAt": "2026-07-28T01:07:01.000Z",
+                  "uid": "35240-57ff5fdc-8fe2-4a1f-87c7-7f3af947f701"
+                },
+                {
+                  "id": "c3720cfd-1571-4773-b32e-74df55a2a4d4",
+                  "name": "The resource does not exist.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/quantum-task/:quantumTaskArn",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "quantum-task",
+                        ":quantumTaskArn"
+                      ],
+                      "variable": [
+                        {
+                          "key": "quantumTaskArn"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"value\": \"reference #/components/schemas/Error not found in the OpenAPI spec\"\n}",
+                  "createdAt": "2026-07-28T01:07:01.000Z",
+                  "updatedAt": "2026-07-28T01:07:01.000Z",
+                  "uid": "35240-c3720cfd-1571-4773-b32e-74df55a2a4d4"
+                },
+                {
+                  "id": "93633b62-df81-49e3-ac28-4334940df284",
+                  "name": "The API throttling rate limit is exceeded.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/quantum-task/:quantumTaskArn",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "quantum-task",
+                        ":quantumTaskArn"
+                      ],
+                      "variable": [
+                        {
+                          "key": "quantumTaskArn"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"value\": \"reference #/components/schemas/Error not found in the OpenAPI spec\"\n}",
+                  "createdAt": "2026-07-28T01:07:01.000Z",
+                  "updatedAt": "2026-07-28T01:07:01.000Z",
+                  "uid": "35240-93633b62-df81-49e3-ac28-4334940df284"
+                },
+                {
+                  "id": "af1986ec-5d50-4b09-8475-22106ea49d08",
+                  "name": "An unexpected service error.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/quantum-task/:quantumTaskArn",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "quantum-task",
+                        ":quantumTaskArn"
+                      ],
+                      "variable": [
+                        {
+                          "key": "quantumTaskArn"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"value\": \"reference #/components/schemas/Error not found in the OpenAPI spec\"\n}",
+                  "createdAt": "2026-07-28T01:07:01.000Z",
+                  "updatedAt": "2026-07-28T01:07:01.000Z",
+                  "uid": "35240-af1986ec-5d50-4b09-8475-22106ea49d08"
+                }
+              ],
+              "createdAt": "2026-07-28T01:07:01.000Z",
+              "updatedAt": "2026-07-28T01:07:01.000Z",
+              "uid": "35240-6ae08b9e-226b-400c-8b62-1e12e5792f28"
+            }
+          ],
+          "id": "480a0c33-2365-410b-9c8d-0ee82fdc2f85",
+          "createdAt": "2026-07-28T01:07:01.000Z",
+          "updatedAt": "2026-07-28T01:07:01.000Z",
+          "uid": "35240-480a0c33-2365-410b-9c8d-0ee82fdc2f85"
+        },
+        {
+          "name": "AWS Braket Create A Quantum Task",
+          "id": "0d3bfef5-9960-4e45-bd4f-131a55dd954b",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"action\": \"<string>\",\n  \"clientToken\": \"<string>\",\n  \"deviceArn\": \"<string>\",\n  \"outputS3Bucket\": \"<string>\",\n  \"outputS3KeyPrefix\": \"<string>\",\n  \"shots\": \"<long>\",\n  \"deviceParameters\": \"<string>\",\n  \"jobToken\": \"<string>\",\n  \"associations\": [\n    {\n      \"arn\": \"<string>\",\n      \"type\": \"RESERVATION_TIME_WINDOW_ARN\"\n    }\n  ],\n  \"experimentalCapabilities\": {},\n  \"tags\": {\n    \"id_1\": \"<string>\",\n    \"dolor13\": \"<string>\",\n    \"Duis949\": \"<string>\",\n    \"ad_e62\": \"<string>\",\n    \"sit_7\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/quantum-task",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "quantum-task"
+              ]
+            },
+            "description": "Create a quantum task by submitting an action document (OpenQASM 3 program, ProgramSet, or AHS program) to be executed on a specified QPU or simulator device. Returns the ARN of the new task; result files are written to the S3 location supplied in outputS3Bucket and outputS3KeyPrefix.\n"
+          },
+          "response": [
+            {
+              "id": "b55a15ef-29e7-49e6-afeb-d418af79e0ce",
+              "name": "Quantum task created.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"action\": \"<string>\",\n  \"clientToken\": \"<string>\",\n  \"deviceArn\": \"<string>\",\n  \"outputS3Bucket\": \"<string>\",\n  \"outputS3KeyPrefix\": \"<string>\",\n  \"shots\": \"<long>\",\n  \"deviceParameters\": \"<string>\",\n  \"jobToken\": \"<string>\",\n  \"associations\": [\n    {\n      \"arn\": \"<string>\",\n      \"type\": \"RESERVATION_TIME_WINDOW_ARN\"\n    }\n  ],\n  \"experimentalCapabilities\": {},\n  \"tags\": {\n    \"id_1\": \"<string>\",\n    \"dolor13\": \"<string>\",\n    \"Duis949\": \"<string>\",\n    \"ad_e62\": \"<string>\",\n    \"sit_7\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/quantum-task",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "quantum-task"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"quantumTaskArn\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:07:01.000Z",
+              "updatedAt": "2026-07-28T01:07:01.000Z",
+              "uid": "35240-b55a15ef-29e7-49e6-afeb-d418af79e0ce"
+            },
+            {
+              "id": "844d13bc-f1e5-434c-a6c0-903375d97ea3",
+              "name": "The input request failed validation.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"action\": \"<string>\",\n  \"clientToken\": \"<string>\",\n  \"deviceArn\": \"<string>\",\n  \"outputS3Bucket\": \"<string>\",\n  \"outputS3KeyPrefix\": \"<string>\",\n  \"shots\": \"<long>\",\n  \"deviceParameters\": \"<string>\",\n  \"jobToken\": \"<string>\",\n  \"associations\": [\n    {\n      \"arn\": \"<string>\",\n      \"type\": \"RESERVATION_TIME_WINDOW_ARN\"\n    }\n  ],\n  \"experimentalCapabilities\": {},\n  \"tags\": {\n    \"id_1\": \"<string>\",\n    \"dolor13\": \"<string>\",\n    \"Duis949\": \"<string>\",\n    \"ad_e62\": \"<string>\",\n    \"sit_7\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/quantum-task",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "quantum-task"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"value\": \"reference #/components/schemas/Error not found in the OpenAPI spec\"\n}",
+              "createdAt": "2026-07-28T01:07:01.000Z",
+              "updatedAt": "2026-07-28T01:07:01.000Z",
+              "uid": "35240-844d13bc-f1e5-434c-a6c0-903375d97ea3"
+            },
+            {
+              "id": "e17c5ecd-8fc8-45a1-8d23-3e572fa7a3e9",
+              "name": "A service quota or spending limit was exceeded.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"action\": \"<string>\",\n  \"clientToken\": \"<string>\",\n  \"deviceArn\": \"<string>\",\n  \"outputS3Bucket\": \"<string>\",\n  \"outputS3KeyPrefix\": \"<string>\",\n  \"shots\": \"<long>\",\n  \"deviceParameters\": \"<string>\",\n  \"jobToken\": \"<string>\",\n  \"associations\": [\n    {\n      \"arn\": \"<string>\",\n      \"type\": \"RESERVATION_TIME_WINDOW_ARN\"\n    }\n  ],\n  \"experimentalCapabilities\": {},\n  \"tags\": {\n    \"id_1\": \"<string>\",\n    \"dolor13\": \"<string>\",\n    \"Duis949\": \"<string>\",\n    \"ad_e62\": \"<string>\",\n    \"sit_7\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/quantum-task",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "quantum-task"
+                  ]
+                }
+              },
+              "status": "Payment Required",
+              "code": 402,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"value\": \"reference #/components/schemas/Error not found in the OpenAPI spec\"\n}",
+              "createdAt": "2026-07-28T01:07:01.000Z",
+              "updatedAt": "2026-07-28T01:07:01.000Z",
+              "uid": "35240-e17c5ecd-8fc8-45a1-8d23-3e572fa7a3e9"
+            },
+            {
+              "id": "b2ef97e9-26de-4bbc-99de-0d8c2887fd8c",
+              "name": "Caller lacks the required IAM permission.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"action\": \"<string>\",\n  \"clientToken\": \"<string>\",\n  \"deviceArn\": \"<string>\",\n  \"outputS3Bucket\": \"<string>\",\n  \"outputS3KeyPrefix\": \"<string>\",\n  \"shots\": \"<long>\",\n  \"deviceParameters\": \"<string>\",\n  \"jobToken\": \"<string>\",\n  \"associations\": [\n    {\n      \"arn\": \"<string>\",\n      \"type\": \"RESERVATION_TIME_WINDOW_ARN\"\n    }\n  ],\n  \"experimentalCapabilities\": {},\n  \"tags\": {\n    \"id_1\": \"<string>\",\n    \"dolor13\": \"<string>\",\n    \"Duis949\": \"<string>\",\n    \"ad_e62\": \"<string>\",\n    \"sit_7\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/quantum-task",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "quantum-task"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"value\": \"reference #/components/schemas/Error not found in the OpenAPI spec\"\n}",
+              "createdAt": "2026-07-28T01:07:01.000Z",
+              "updatedAt": "2026-07-28T01:07:01.000Z",
+              "uid": "35240-b2ef97e9-26de-4bbc-99de-0d8c2887fd8c"
+            },
+            {
+              "id": "0a7f1468-6ea7-4dc4-acc7-1a3a732fec21",
+              "name": "The targeted device has been retired.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"action\": \"<string>\",\n  \"clientToken\": \"<string>\",\n  \"deviceArn\": \"<string>\",\n  \"outputS3Bucket\": \"<string>\",\n  \"outputS3KeyPrefix\": \"<string>\",\n  \"shots\": \"<long>\",\n  \"deviceParameters\": \"<string>\",\n  \"jobToken\": \"<string>\",\n  \"associations\": [\n    {\n      \"arn\": \"<string>\",\n      \"type\": \"RESERVATION_TIME_WINDOW_ARN\"\n    }\n  ],\n  \"experimentalCapabilities\": {},\n  \"tags\": {\n    \"id_1\": \"<string>\",\n    \"dolor13\": \"<string>\",\n    \"Duis949\": \"<string>\",\n    \"ad_e62\": \"<string>\",\n    \"sit_7\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/quantum-task",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "quantum-task"
+                  ]
+                }
+              },
+              "status": "Gone",
+              "code": 410,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"value\": \"reference #/components/schemas/Error not found in the OpenAPI spec\"\n}",
+              "createdAt": "2026-07-28T01:07:01.000Z",
+              "updatedAt": "2026-07-28T01:07:01.000Z",
+              "uid": "35240-0a7f1468-6ea7-4dc4-acc7-1a3a732fec21"
+            },
+            {
+              "id": "69f383c4-6210-4d14-b06d-9991bd3f4c09",
+              "name": "The targeted device is currently offline.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"action\": \"<string>\",\n  \"clientToken\": \"<string>\",\n  \"deviceArn\": \"<string>\",\n  \"outputS3Bucket\": \"<string>\",\n  \"outputS3KeyPrefix\": \"<string>\",\n  \"shots\": \"<long>\",\n  \"deviceParameters\": \"<string>\",\n  \"jobToken\": \"<string>\",\n  \"associations\": [\n    {\n      \"arn\": \"<string>\",\n      \"type\": \"RESERVATION_TIME_WINDOW_ARN\"\n    }\n  ],\n  \"experimentalCapabilities\": {},\n  \"tags\": {\n    \"id_1\": \"<string>\",\n    \"dolor13\": \"<string>\",\n    \"Duis949\": \"<string>\",\n    \"ad_e62\": \"<string>\",\n    \"sit_7\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/quantum-task",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "quantum-task"
+                  ]
+                }
+              },
+              "status": "Failed Dependency (WebDAV) (RFC 4918)",
+              "code": 424,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"value\": \"reference #/components/schemas/Error not found in the OpenAPI spec\"\n}",
+              "createdAt": "2026-07-28T01:07:01.000Z",
+              "updatedAt": "2026-07-28T01:07:01.000Z",
+              "uid": "35240-69f383c4-6210-4d14-b06d-9991bd3f4c09"
+            },
+            {
+              "id": "c74c58f8-3649-4d61-bd55-b519de81693a",
+              "name": "The API throttling rate limit is exceeded.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"action\": \"<string>\",\n  \"clientToken\": \"<string>\",\n  \"deviceArn\": \"<string>\",\n  \"outputS3Bucket\": \"<string>\",\n  \"outputS3KeyPrefix\": \"<string>\",\n  \"shots\": \"<long>\",\n  \"deviceParameters\": \"<string>\",\n  \"jobToken\": \"<string>\",\n  \"associations\": [\n    {\n      \"arn\": \"<string>\",\n      \"type\": \"RESERVATION_TIME_WINDOW_ARN\"\n    }\n  ],\n  \"experimentalCapabilities\": {},\n  \"tags\": {\n    \"id_1\": \"<string>\",\n    \"dolor13\": \"<string>\",\n    \"Duis949\": \"<string>\",\n    \"ad_e62\": \"<string>\",\n    \"sit_7\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/quantum-task",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "quantum-task"
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"value\": \"reference #/components/schemas/Error not found in the OpenAPI spec\"\n}",
+              "createdAt": "2026-07-28T01:07:01.000Z",
+              "updatedAt": "2026-07-28T01:07:01.000Z",
+              "uid": "35240-c74c58f8-3649-4d61-bd55-b519de81693a"
+            },
+            {
+              "id": "9c018042-843f-4e5c-a70d-fe1834de9817",
+              "name": "An unexpected service error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"action\": \"<string>\",\n  \"clientToken\": \"<string>\",\n  \"deviceArn\": \"<string>\",\n  \"outputS3Bucket\": \"<string>\",\n  \"outputS3KeyPrefix\": \"<string>\",\n  \"shots\": \"<long>\",\n  \"deviceParameters\": \"<string>\",\n  \"jobToken\": \"<string>\",\n  \"associations\": [\n    {\n      \"arn\": \"<string>\",\n      \"type\": \"RESERVATION_TIME_WINDOW_ARN\"\n    }\n  ],\n  \"experimentalCapabilities\": {},\n  \"tags\": {\n    \"id_1\": \"<string>\",\n    \"dolor13\": \"<string>\",\n    \"Duis949\": \"<string>\",\n    \"ad_e62\": \"<string>\",\n    \"sit_7\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/quantum-task",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "quantum-task"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"value\": \"reference #/components/schemas/Error not found in the OpenAPI spec\"\n}",
+              "createdAt": "2026-07-28T01:07:01.000Z",
+              "updatedAt": "2026-07-28T01:07:01.000Z",
+              "uid": "35240-9c018042-843f-4e5c-a70d-fe1834de9817"
+            }
+          ],
+          "createdAt": "2026-07-28T01:07:01.000Z",
+          "updatedAt": "2026-07-28T01:07:01.000Z",
+          "uid": "35240-0d3bfef5-9960-4e45-bd4f-131a55dd954b"
+        }
+      ],
+      "id": "f52cb454-1e36-49e2-a443-b4c920cf4fac",
+      "createdAt": "2026-07-28T01:07:01.000Z",
+      "updatedAt": "2026-07-28T01:07:01.000Z",
+      "uid": "35240-f52cb454-1e36-49e2-a443-b4c920cf4fac"
+    },
+    {
+      "name": "quantum-tasks",
+      "item": [
+        {
+          "name": "AWS Braket Search Quantum Tasks",
+          "id": "14093cfa-98b7-4a28-ac92-53fd0f51165b",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"filters\": [\n    {\n      \"name\": \"createdAt\",\n      \"operator\": \"LT\",\n      \"values\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"name\": \"status\",\n      \"operator\": \"EQUAL\",\n      \"values\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"maxResults\": \"<integer>\",\n  \"nextToken\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/quantum-tasks",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "quantum-tasks"
+              ]
+            },
+            "description": "Search the caller's quantum tasks. Filters include device ARN, status, creation time range, and tag values.\n"
+          },
+          "response": [
+            {
+              "id": "74609136-ae23-498a-8d05-61dc59f337bb",
+              "name": "Search results.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filters\": [\n    {\n      \"name\": \"createdAt\",\n      \"operator\": \"LT\",\n      \"values\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"name\": \"status\",\n      \"operator\": \"EQUAL\",\n      \"values\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"maxResults\": \"<integer>\",\n  \"nextToken\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/quantum-tasks",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "quantum-tasks"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"quantumTasks\": [\n    {\n      \"quantumTaskArn\": \"<string>\",\n      \"deviceArn\": \"<string>\",\n      \"status\": \"<string>\",\n      \"shots\": \"<long>\",\n      \"createdAt\": \"<dateTime>\",\n      \"endedAt\": \"<dateTime>\",\n      \"outputS3Bucket\": \"<string>\",\n      \"outputS3Directory\": \"<string>\",\n      \"tags\": {\n        \"deserunt_af3\": \"<string>\"\n      }\n    },\n    {\n      \"quantumTaskArn\": \"<string>\",\n      \"deviceArn\": \"<string>\",\n      \"status\": \"<string>\",\n      \"shots\": \"<long>\",\n      \"createdAt\": \"<dateTime>\",\n      \"endedAt\": \"<dateTime>\",\n      \"outputS3Bucket\": \"<string>\",\n      \"outputS3Directory\": \"<string>\",\n      \"tags\": {\n        \"incididunt_f9\": \"<string>\"\n      }\n    }\n  ],\n  \"nextToken\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:07:01.000Z",
+              "updatedAt": "2026-07-28T01:07:01.000Z",
+              "uid": "35240-74609136-ae23-498a-8d05-61dc59f337bb"
+            }
+          ],
+          "createdAt": "2026-07-28T01:07:01.000Z",
+          "updatedAt": "2026-07-28T01:07:01.000Z",
+          "uid": "35240-14093cfa-98b7-4a28-ac92-53fd0f51165b"
+        }
+      ],
+      "id": "08c67a1e-3d43-411d-ac86-a76422e8a3c3",
+      "createdAt": "2026-07-28T01:07:01.000Z",
+      "updatedAt": "2026-07-28T01:07:01.000Z",
+      "uid": "35240-08c67a1e-3d43-411d-ac86-a76422e8a3c3"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://braket.us-east-1.amazonaws.com"
+    }
+  ]
+}
