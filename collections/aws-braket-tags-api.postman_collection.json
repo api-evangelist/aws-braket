@@ -1,7 +1,7 @@
 {
   "item": [
     {
-      "id": "c0cf3bdb-cca5-4e97-a389-195d86b0138a",
+      "id": "76236df4-4e98-4224-9f06-b54d6586bdb2",
       "name": "Tags",
       "description": {
         "content": "Tagging for Braket resources.",
@@ -9,7 +9,7 @@
       },
       "item": [
         {
-          "id": "61a30448-7b18-4bce-bd8e-ecc3a0a28663",
+          "id": "f678fede-e92a-4bef-b08f-d0ae340b988f",
           "name": "AWS Braket List Tags For Resource",
           "request": {
             "name": "AWS Braket List Tags For Resource",
@@ -47,7 +47,7 @@
           },
           "response": [
             {
-              "id": "404bf25f-3fa9-46b4-a8df-0b6dd7448964",
+              "id": "7f12832b-b836-45c8-808d-0481de467208",
               "name": "Tag list.",
               "originalRequest": {
                 "url": {
@@ -94,7 +94,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"tags\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "body": "{\n  \"tags\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  }\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -105,7 +105,7 @@
           }
         },
         {
-          "id": "05d834cd-4c88-46b7-bbbf-3b00726bcc13",
+          "id": "7da506c1-d65c-4568-9daf-a415fe9c007d",
           "name": "AWS Braket Tag A Resource",
           "request": {
             "name": "AWS Braket Tag A Resource",
@@ -142,7 +142,7 @@
             "auth": null,
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"tags\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  }\n}",
+              "raw": "{\n  \"tags\": {\n    \"key_0\": \"<string>\"\n  }\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -152,7 +152,7 @@
           },
           "response": [
             {
-              "id": "7a44102b-985b-4fbc-b062-c90b7be0c660",
+              "id": "13426d36-bf3b-49af-aeaf-ffc31f54721a",
               "name": "Tags applied.",
               "originalRequest": {
                 "url": {
@@ -187,7 +187,7 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"tags\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+                  "raw": "{\n  \"tags\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  }\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -214,7 +214,7 @@
           }
         },
         {
-          "id": "ddfd6570-b53b-4dd0-bd41-7b9a163b02fc",
+          "id": "6b89ed1a-3e35-42da-958d-6d00eb6fad83",
           "name": "AWS Braket Untag A Resource",
           "request": {
             "name": "AWS Braket Untag A Resource",
@@ -259,7 +259,7 @@
           },
           "response": [
             {
-              "id": "3dc6da86-2b9a-41dd-9bf7-358ecd87ef78",
+              "id": "58c4029f-3465-4a9d-ab35-e818113ec37c",
               "name": "Tags removed.",
               "originalRequest": {
                 "url": {
@@ -351,11 +351,11 @@
     ]
   },
   "info": {
-    "_postman_id": "cd47d7e8-df27-4074-a4fa-e1f6e0d5847c",
-    "name": "AWS Braket Tags API",
+    "_postman_id": "965e44d9-9781-4f42-bb1f-e1ab6d160bdb",
+    "name": "AWS Braket Devices Tags API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
-      "content": "Manage tags on Amazon Braket resources (quantum tasks, hybrid jobs, and spending limits) for cost allocation, IAM ABAC, and organization. Tags are propagated to AWS Cost Explorer and AWS Budgets and can be used to enforce fine-grained IAM conditions on Braket resources.\n\n\nContact Support:\n Name: AWS Support",
+      "content": "Discover quantum devices available on Amazon Braket — QPUs from AQT, IonQ, IQM, QuEra, and Rigetti, plus AWS-managed on-demand simulators (SV1, DM1, TN1). Use GetDevice to retrieve provider capabilities, paradigm, queue state, native gate set, and topology for a single ARN; use SearchDevices to enumerate devices by status, provider, and type.\n\n\nContact Support:\n Name: AWS Support",
       "type": "text/plain"
     }
   }

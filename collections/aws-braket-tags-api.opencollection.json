@@ -1,8 +1,8 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "AWS Braket Tags API",
-    "version": "Sat Aug 31 2019 20:00:00 GMT-0400 (Eastern Daylight Time)"
+    "name": "AWS Braket Devices Tags API",
+    "version": "2019-09-01"
   },
   "request": {
     "auth": {

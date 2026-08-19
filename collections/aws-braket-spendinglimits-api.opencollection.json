@@ -1,0 +1,96 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "AWS Braket Devices SpendingLimits API",
+    "version": "2019-09-01"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SpendingLimits",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "AWS Braket Create A Spending Limit",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://braket.us-east-1.amazonaws.com/spending-limit",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new spending limit for a specified QPU device in the current region. Rejected if a limit already exists for the device.\n"
+        },
+        {
+          "info": {
+            "name": "AWS Braket Update A Spending Limit",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://braket.us-east-1.amazonaws.com/spending-limit/:spendingLimitArn",
+            "params": [
+              {
+                "name": "spendingLimitArn",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the maximum spend value and/or time period for an existing spending limit. Rejected if the sum of current spend and queued spend already exceeds the requested new maximum.\n"
+        },
+        {
+          "info": {
+            "name": "AWS Braket Delete A Spending Limit",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://braket.us-east-1.amazonaws.com/spending-limit/:spendingLimitArn",
+            "params": [
+              {
+                "name": "spendingLimitArn",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete the spending limit, removing all restrictions on the device."
+        },
+        {
+          "info": {
+            "name": "AWS Braket Search Spending Limits",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://braket.us-east-1.amazonaws.com/spending-limits",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Search spending limits, typically filtered by deviceArn."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

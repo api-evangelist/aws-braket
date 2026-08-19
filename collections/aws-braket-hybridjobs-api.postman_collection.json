@@ -1,0 +1,849 @@
+{
+  "item": [
+    {
+      "id": "08580113-a275-4dac-adda-2ca1843e7a1b",
+      "name": "HybridJobs",
+      "description": {
+        "content": "Hybrid quantum-classical job orchestration.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3023c2a9-a07c-403c-b9c7-1caa5ae728ce",
+          "name": "AWS Braket Create A Hybrid Job",
+          "request": {
+            "name": "AWS Braket Create A Hybrid Job",
+            "description": {
+              "content": "Create a hybrid job that runs a containerized algorithm against a designated QPU or simulator. Specifies the container image (or script mode with an S3 entry point), the device, instance configuration (default ml.m5.xlarge), hyperparameters, input/output channels, IAM role, and stopping condition.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "job"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"algorithmSpecification\": {\n    \"containerImage\": {\n      \"uri\": \"<string>\"\n    },\n    \"scriptModeConfig\": {\n      \"compressionType\": \"<string>\",\n      \"entryPoint\": \"<string>\",\n      \"s3Uri\": \"<string>\"\n    }\n  },\n  \"clientToken\": \"<string>\",\n  \"deviceConfig\": {\n    \"device\": \"<string>\"\n  },\n  \"instanceConfig\": {\n    \"instanceCount\": \"<integer>\",\n    \"instanceType\": \"ml.m5.xlarge\",\n    \"volumeSizeInGb\": \"<integer>\"\n  },\n  \"jobName\": \"<string>\",\n  \"outputDataConfig\": {\n    \"kmsKeyId\": \"<string>\",\n    \"s3Path\": \"<string>\"\n  },\n  \"roleArn\": \"<string>\",\n  \"associations\": [\n    {\n      \"arn\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ],\n  \"checkpointConfig\": {\n    \"localPath\": \"<string>\",\n    \"s3Uri\": \"<string>\"\n  },\n  \"hyperParameters\": {\n    \"key_0\": \"<string>\"\n  },\n  \"inputDataConfig\": [\n    {\n      \"channelName\": \"<string>\",\n      \"contentType\": \"<string>\",\n      \"dataSource\": {\n        \"s3DataSource\": {\n          \"s3Uri\": \"<string>\"\n        }\n      }\n    },\n    {\n      \"channelName\": \"<string>\",\n      \"contentType\": \"<string>\",\n      \"dataSource\": {\n        \"s3DataSource\": {\n          \"s3Uri\": \"<string>\"\n        }\n      }\n    }\n  ],\n  \"stoppingCondition\": {\n    \"maxRuntimeInSeconds\": \"<integer>\"\n  },\n  \"tags\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\",\n    \"key_3\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9c698a92-3d54-41c6-84ef-61c1d5dbc537",
+              "name": "Hybrid job created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "job"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"algorithmSpecification\": {\n    \"containerImage\": {\n      \"uri\": \"<string>\"\n    },\n    \"scriptModeConfig\": {\n      \"compressionType\": \"<string>\",\n      \"entryPoint\": \"<string>\",\n      \"s3Uri\": \"<string>\"\n    }\n  },\n  \"clientToken\": \"<string>\",\n  \"deviceConfig\": {\n    \"device\": \"<string>\"\n  },\n  \"instanceConfig\": {\n    \"instanceCount\": \"<integer>\",\n    \"instanceType\": \"ml.m5.xlarge\",\n    \"volumeSizeInGb\": \"<integer>\"\n  },\n  \"jobName\": \"<string>\",\n  \"outputDataConfig\": {\n    \"kmsKeyId\": \"<string>\",\n    \"s3Path\": \"<string>\"\n  },\n  \"roleArn\": \"<string>\",\n  \"associations\": [\n    {\n      \"arn\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ],\n  \"checkpointConfig\": {\n    \"localPath\": \"<string>\",\n    \"s3Uri\": \"<string>\"\n  },\n  \"hyperParameters\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"inputDataConfig\": [\n    {\n      \"channelName\": \"<string>\",\n      \"contentType\": \"<string>\",\n      \"dataSource\": {\n        \"s3DataSource\": {\n          \"s3Uri\": \"<string>\"\n        }\n      }\n    },\n    {\n      \"channelName\": \"<string>\",\n      \"contentType\": \"<string>\",\n      \"dataSource\": {\n        \"s3DataSource\": {\n          \"s3Uri\": \"<string>\"\n        }\n      }\n    }\n  ],\n  \"stoppingCondition\": {\n    \"maxRuntimeInSeconds\": \"<integer>\"\n  },\n  \"tags\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"jobArn\": \"arn:aws:braket:cr-7z:379165477380:job/ fiz<c'}-\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6bc0cda1-d509-4990-9ec3-67fbfdeb9be1",
+              "name": "Validation failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "job"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"algorithmSpecification\": {\n    \"containerImage\": {\n      \"uri\": \"<string>\"\n    },\n    \"scriptModeConfig\": {\n      \"compressionType\": \"<string>\",\n      \"entryPoint\": \"<string>\",\n      \"s3Uri\": \"<string>\"\n    }\n  },\n  \"clientToken\": \"<string>\",\n  \"deviceConfig\": {\n    \"device\": \"<string>\"\n  },\n  \"instanceConfig\": {\n    \"instanceCount\": \"<integer>\",\n    \"instanceType\": \"ml.m5.xlarge\",\n    \"volumeSizeInGb\": \"<integer>\"\n  },\n  \"jobName\": \"<string>\",\n  \"outputDataConfig\": {\n    \"kmsKeyId\": \"<string>\",\n    \"s3Path\": \"<string>\"\n  },\n  \"roleArn\": \"<string>\",\n  \"associations\": [\n    {\n      \"arn\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ],\n  \"checkpointConfig\": {\n    \"localPath\": \"<string>\",\n    \"s3Uri\": \"<string>\"\n  },\n  \"hyperParameters\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"inputDataConfig\": [\n    {\n      \"channelName\": \"<string>\",\n      \"contentType\": \"<string>\",\n      \"dataSource\": {\n        \"s3DataSource\": {\n          \"s3Uri\": \"<string>\"\n        }\n      }\n    },\n    {\n      \"channelName\": \"<string>\",\n      \"contentType\": \"<string>\",\n      \"dataSource\": {\n        \"s3DataSource\": {\n          \"s3Uri\": \"<string>\"\n        }\n      }\n    }\n  ],\n  \"stoppingCondition\": {\n    \"maxRuntimeInSeconds\": \"<integer>\"\n  },\n  \"tags\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a215e42a-a115-4c4a-9ca4-30d423de8e2f",
+              "name": "Quota or spending limit exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "job"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"algorithmSpecification\": {\n    \"containerImage\": {\n      \"uri\": \"<string>\"\n    },\n    \"scriptModeConfig\": {\n      \"compressionType\": \"<string>\",\n      \"entryPoint\": \"<string>\",\n      \"s3Uri\": \"<string>\"\n    }\n  },\n  \"clientToken\": \"<string>\",\n  \"deviceConfig\": {\n    \"device\": \"<string>\"\n  },\n  \"instanceConfig\": {\n    \"instanceCount\": \"<integer>\",\n    \"instanceType\": \"ml.m5.xlarge\",\n    \"volumeSizeInGb\": \"<integer>\"\n  },\n  \"jobName\": \"<string>\",\n  \"outputDataConfig\": {\n    \"kmsKeyId\": \"<string>\",\n    \"s3Path\": \"<string>\"\n  },\n  \"roleArn\": \"<string>\",\n  \"associations\": [\n    {\n      \"arn\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ],\n  \"checkpointConfig\": {\n    \"localPath\": \"<string>\",\n    \"s3Uri\": \"<string>\"\n  },\n  \"hyperParameters\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"inputDataConfig\": [\n    {\n      \"channelName\": \"<string>\",\n      \"contentType\": \"<string>\",\n      \"dataSource\": {\n        \"s3DataSource\": {\n          \"s3Uri\": \"<string>\"\n        }\n      }\n    },\n    {\n      \"channelName\": \"<string>\",\n      \"contentType\": \"<string>\",\n      \"dataSource\": {\n        \"s3DataSource\": {\n          \"s3Uri\": \"<string>\"\n        }\n      }\n    }\n  ],\n  \"stoppingCondition\": {\n    \"maxRuntimeInSeconds\": \"<integer>\"\n  },\n  \"tags\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Payment Required",
+              "code": 402,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e477a92c-3903-4a26-8fed-4e6ddf0c5aea",
+              "name": "Caller lacks the required IAM permission.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "job"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"algorithmSpecification\": {\n    \"containerImage\": {\n      \"uri\": \"<string>\"\n    },\n    \"scriptModeConfig\": {\n      \"compressionType\": \"<string>\",\n      \"entryPoint\": \"<string>\",\n      \"s3Uri\": \"<string>\"\n    }\n  },\n  \"clientToken\": \"<string>\",\n  \"deviceConfig\": {\n    \"device\": \"<string>\"\n  },\n  \"instanceConfig\": {\n    \"instanceCount\": \"<integer>\",\n    \"instanceType\": \"ml.m5.xlarge\",\n    \"volumeSizeInGb\": \"<integer>\"\n  },\n  \"jobName\": \"<string>\",\n  \"outputDataConfig\": {\n    \"kmsKeyId\": \"<string>\",\n    \"s3Path\": \"<string>\"\n  },\n  \"roleArn\": \"<string>\",\n  \"associations\": [\n    {\n      \"arn\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ],\n  \"checkpointConfig\": {\n    \"localPath\": \"<string>\",\n    \"s3Uri\": \"<string>\"\n  },\n  \"hyperParameters\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"inputDataConfig\": [\n    {\n      \"channelName\": \"<string>\",\n      \"contentType\": \"<string>\",\n      \"dataSource\": {\n        \"s3DataSource\": {\n          \"s3Uri\": \"<string>\"\n        }\n      }\n    },\n    {\n      \"channelName\": \"<string>\",\n      \"contentType\": \"<string>\",\n      \"dataSource\": {\n        \"s3DataSource\": {\n          \"s3Uri\": \"<string>\"\n        }\n      }\n    }\n  ],\n  \"stoppingCondition\": {\n    \"maxRuntimeInSeconds\": \"<integer>\"\n  },\n  \"tags\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bfbc46da-199c-42f9-b837-e8137271e8f5",
+              "name": "Conflicting state.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "job"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"algorithmSpecification\": {\n    \"containerImage\": {\n      \"uri\": \"<string>\"\n    },\n    \"scriptModeConfig\": {\n      \"compressionType\": \"<string>\",\n      \"entryPoint\": \"<string>\",\n      \"s3Uri\": \"<string>\"\n    }\n  },\n  \"clientToken\": \"<string>\",\n  \"deviceConfig\": {\n    \"device\": \"<string>\"\n  },\n  \"instanceConfig\": {\n    \"instanceCount\": \"<integer>\",\n    \"instanceType\": \"ml.m5.xlarge\",\n    \"volumeSizeInGb\": \"<integer>\"\n  },\n  \"jobName\": \"<string>\",\n  \"outputDataConfig\": {\n    \"kmsKeyId\": \"<string>\",\n    \"s3Path\": \"<string>\"\n  },\n  \"roleArn\": \"<string>\",\n  \"associations\": [\n    {\n      \"arn\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ],\n  \"checkpointConfig\": {\n    \"localPath\": \"<string>\",\n    \"s3Uri\": \"<string>\"\n  },\n  \"hyperParameters\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"inputDataConfig\": [\n    {\n      \"channelName\": \"<string>\",\n      \"contentType\": \"<string>\",\n      \"dataSource\": {\n        \"s3DataSource\": {\n          \"s3Uri\": \"<string>\"\n        }\n      }\n    },\n    {\n      \"channelName\": \"<string>\",\n      \"contentType\": \"<string>\",\n      \"dataSource\": {\n        \"s3DataSource\": {\n          \"s3Uri\": \"<string>\"\n        }\n      }\n    }\n  ],\n  \"stoppingCondition\": {\n    \"maxRuntimeInSeconds\": \"<integer>\"\n  },\n  \"tags\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c7adfc09-de27-4614-8ceb-d49089c49722",
+              "name": "Device retired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "job"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"algorithmSpecification\": {\n    \"containerImage\": {\n      \"uri\": \"<string>\"\n    },\n    \"scriptModeConfig\": {\n      \"compressionType\": \"<string>\",\n      \"entryPoint\": \"<string>\",\n      \"s3Uri\": \"<string>\"\n    }\n  },\n  \"clientToken\": \"<string>\",\n  \"deviceConfig\": {\n    \"device\": \"<string>\"\n  },\n  \"instanceConfig\": {\n    \"instanceCount\": \"<integer>\",\n    \"instanceType\": \"ml.m5.xlarge\",\n    \"volumeSizeInGb\": \"<integer>\"\n  },\n  \"jobName\": \"<string>\",\n  \"outputDataConfig\": {\n    \"kmsKeyId\": \"<string>\",\n    \"s3Path\": \"<string>\"\n  },\n  \"roleArn\": \"<string>\",\n  \"associations\": [\n    {\n      \"arn\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ],\n  \"checkpointConfig\": {\n    \"localPath\": \"<string>\",\n    \"s3Uri\": \"<string>\"\n  },\n  \"hyperParameters\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"inputDataConfig\": [\n    {\n      \"channelName\": \"<string>\",\n      \"contentType\": \"<string>\",\n      \"dataSource\": {\n        \"s3DataSource\": {\n          \"s3Uri\": \"<string>\"\n        }\n      }\n    },\n    {\n      \"channelName\": \"<string>\",\n      \"contentType\": \"<string>\",\n      \"dataSource\": {\n        \"s3DataSource\": {\n          \"s3Uri\": \"<string>\"\n        }\n      }\n    }\n  ],\n  \"stoppingCondition\": {\n    \"maxRuntimeInSeconds\": \"<integer>\"\n  },\n  \"tags\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Gone",
+              "code": 410,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bd64c9fd-2aa5-48fa-b4ad-3541c9779051",
+              "name": "Device offline.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "job"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"algorithmSpecification\": {\n    \"containerImage\": {\n      \"uri\": \"<string>\"\n    },\n    \"scriptModeConfig\": {\n      \"compressionType\": \"<string>\",\n      \"entryPoint\": \"<string>\",\n      \"s3Uri\": \"<string>\"\n    }\n  },\n  \"clientToken\": \"<string>\",\n  \"deviceConfig\": {\n    \"device\": \"<string>\"\n  },\n  \"instanceConfig\": {\n    \"instanceCount\": \"<integer>\",\n    \"instanceType\": \"ml.m5.xlarge\",\n    \"volumeSizeInGb\": \"<integer>\"\n  },\n  \"jobName\": \"<string>\",\n  \"outputDataConfig\": {\n    \"kmsKeyId\": \"<string>\",\n    \"s3Path\": \"<string>\"\n  },\n  \"roleArn\": \"<string>\",\n  \"associations\": [\n    {\n      \"arn\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ],\n  \"checkpointConfig\": {\n    \"localPath\": \"<string>\",\n    \"s3Uri\": \"<string>\"\n  },\n  \"hyperParameters\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"inputDataConfig\": [\n    {\n      \"channelName\": \"<string>\",\n      \"contentType\": \"<string>\",\n      \"dataSource\": {\n        \"s3DataSource\": {\n          \"s3Uri\": \"<string>\"\n        }\n      }\n    },\n    {\n      \"channelName\": \"<string>\",\n      \"contentType\": \"<string>\",\n      \"dataSource\": {\n        \"s3DataSource\": {\n          \"s3Uri\": \"<string>\"\n        }\n      }\n    }\n  ],\n  \"stoppingCondition\": {\n    \"maxRuntimeInSeconds\": \"<integer>\"\n  },\n  \"tags\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Failed Dependency (WebDAV) (RFC 4918)",
+              "code": 424,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0cb2f6cf-1b1d-4e2d-bbbd-6afa410feac7",
+              "name": "Throttled.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "job"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"algorithmSpecification\": {\n    \"containerImage\": {\n      \"uri\": \"<string>\"\n    },\n    \"scriptModeConfig\": {\n      \"compressionType\": \"<string>\",\n      \"entryPoint\": \"<string>\",\n      \"s3Uri\": \"<string>\"\n    }\n  },\n  \"clientToken\": \"<string>\",\n  \"deviceConfig\": {\n    \"device\": \"<string>\"\n  },\n  \"instanceConfig\": {\n    \"instanceCount\": \"<integer>\",\n    \"instanceType\": \"ml.m5.xlarge\",\n    \"volumeSizeInGb\": \"<integer>\"\n  },\n  \"jobName\": \"<string>\",\n  \"outputDataConfig\": {\n    \"kmsKeyId\": \"<string>\",\n    \"s3Path\": \"<string>\"\n  },\n  \"roleArn\": \"<string>\",\n  \"associations\": [\n    {\n      \"arn\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ],\n  \"checkpointConfig\": {\n    \"localPath\": \"<string>\",\n    \"s3Uri\": \"<string>\"\n  },\n  \"hyperParameters\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"inputDataConfig\": [\n    {\n      \"channelName\": \"<string>\",\n      \"contentType\": \"<string>\",\n      \"dataSource\": {\n        \"s3DataSource\": {\n          \"s3Uri\": \"<string>\"\n        }\n      }\n    },\n    {\n      \"channelName\": \"<string>\",\n      \"contentType\": \"<string>\",\n      \"dataSource\": {\n        \"s3DataSource\": {\n          \"s3Uri\": \"<string>\"\n        }\n      }\n    }\n  ],\n  \"stoppingCondition\": {\n    \"maxRuntimeInSeconds\": \"<integer>\"\n  },\n  \"tags\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2a3d4dd9-9785-404f-95ab-3b4ca3544bfc",
+              "name": "Unexpected error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "job"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"algorithmSpecification\": {\n    \"containerImage\": {\n      \"uri\": \"<string>\"\n    },\n    \"scriptModeConfig\": {\n      \"compressionType\": \"<string>\",\n      \"entryPoint\": \"<string>\",\n      \"s3Uri\": \"<string>\"\n    }\n  },\n  \"clientToken\": \"<string>\",\n  \"deviceConfig\": {\n    \"device\": \"<string>\"\n  },\n  \"instanceConfig\": {\n    \"instanceCount\": \"<integer>\",\n    \"instanceType\": \"ml.m5.xlarge\",\n    \"volumeSizeInGb\": \"<integer>\"\n  },\n  \"jobName\": \"<string>\",\n  \"outputDataConfig\": {\n    \"kmsKeyId\": \"<string>\",\n    \"s3Path\": \"<string>\"\n  },\n  \"roleArn\": \"<string>\",\n  \"associations\": [\n    {\n      \"arn\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ],\n  \"checkpointConfig\": {\n    \"localPath\": \"<string>\",\n    \"s3Uri\": \"<string>\"\n  },\n  \"hyperParameters\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"inputDataConfig\": [\n    {\n      \"channelName\": \"<string>\",\n      \"contentType\": \"<string>\",\n      \"dataSource\": {\n        \"s3DataSource\": {\n          \"s3Uri\": \"<string>\"\n        }\n      }\n    },\n    {\n      \"channelName\": \"<string>\",\n      \"contentType\": \"<string>\",\n      \"dataSource\": {\n        \"s3DataSource\": {\n          \"s3Uri\": \"<string>\"\n        }\n      }\n    }\n  ],\n  \"stoppingCondition\": {\n    \"maxRuntimeInSeconds\": \"<integer>\"\n  },\n  \"tags\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "faa0ee66-bb44-4ce9-86b9-6261ec1d81e4",
+          "name": "AWS Braket Get A Hybrid Job",
+          "request": {
+            "name": "AWS Braket Get A Hybrid Job",
+            "description": {
+              "content": "Retrieve the status, device, instance config, and checkpoint metadata for a hybrid job.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "job",
+                ":jobArn"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "jobArn",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9b6ee573-d280-42e5-8604-61fe799913d4",
+              "name": "Hybrid job description.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "job",
+                    ":jobArn"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobArn",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"jobArn\": \"string\",\n  \"jobName\": \"string\",\n  \"status\": \"RUNNING\",\n  \"deviceConfig\": {\n    \"device\": \"string\"\n  },\n  \"instanceConfig\": {\n    \"instanceType\": \"string\",\n    \"instanceCount\": 3920,\n    \"volumeSizeInGb\": 6598\n  },\n  \"algorithmSpecification\": {},\n  \"roleArn\": \"string\",\n  \"createdAt\": \"1968-10-31T16:52:48.675Z\",\n  \"startedAt\": \"1991-03-22T08:35:57.540Z\",\n  \"endedAt\": \"1997-01-11T00:48:48.432Z\",\n  \"billableDuration\": 3323,\n  \"failureReason\": \"string\",\n  \"queueInfo\": {\n    \"queue\": \"string\",\n    \"position\": \"string\"\n  },\n  \"outputDataConfig\": {},\n  \"checkpointConfig\": {},\n  \"tags\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9fab6b88-2df5-4c05-a636-2d43dcecb502",
+          "name": "AWS Braket Cancel A Hybrid Job",
+          "request": {
+            "name": "AWS Braket Cancel A Hybrid Job",
+            "description": {
+              "content": "Cancel a hybrid job that has not yet completed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "job",
+                ":jobArn",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "jobArn",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6e9a1792-079d-42d3-92c2-bb7ce245d25a",
+              "name": "Cancellation accepted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "job",
+                    ":jobArn",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobArn",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cancellationStatus\": \"CANCELLED\",\n  \"jobArn\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1b2c0306-c819-4a2c-a449-8c051faa3a29",
+          "name": "AWS Braket Search Hybrid Jobs",
+          "request": {
+            "name": "AWS Braket Search Hybrid Jobs",
+            "description": {
+              "content": "Search and list hybrid jobs by status, device, creation time, or tag.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "jobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"filters\": [\n    {\n      \"name\": \"<string>\",\n      \"operator\": \"<string>\",\n      \"values\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"operator\": \"<string>\",\n      \"values\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"maxResults\": \"<integer>\",\n  \"nextToken\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a0a95b38-572a-46e5-a27a-090d99b8124e",
+              "name": "Job search results.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filters\": [\n    {\n      \"name\": \"<string>\",\n      \"operator\": \"<string>\",\n      \"values\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"operator\": \"<string>\",\n      \"values\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"maxResults\": \"<integer>\",\n  \"nextToken\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"jobs\": [\n    {\n      \"jobArn\": \"string\",\n      \"jobName\": \"string\",\n      \"status\": \"string\",\n      \"device\": \"string\",\n      \"createdAt\": \"2023-03-23T23:47:14.665Z\",\n      \"startedAt\": \"1947-01-10T04:50:35.685Z\",\n      \"endedAt\": \"1955-07-15T08:14:09.390Z\",\n      \"tags\": {\n        \"key_0\": \"string\"\n      }\n    },\n    {\n      \"jobArn\": \"string\",\n      \"jobName\": \"string\",\n      \"status\": \"string\",\n      \"device\": \"string\",\n      \"createdAt\": \"2005-08-15T14:58:37.270Z\",\n      \"startedAt\": \"1974-12-11T05:45:16.127Z\",\n      \"endedAt\": \"2001-12-04T00:37:49.875Z\",\n      \"tags\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": \"string\"\n      }\n    }\n  ],\n  \"nextToken\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://braket.us-east-1.amazonaws.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1b27987d-34e3-4e69-9a5a-bc8b46d62734",
+    "name": "AWS Braket Devices HybridJobs API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Discover quantum devices available on Amazon Braket — QPUs from AQT, IonQ, IQM, QuEra, and Rigetti, plus AWS-managed on-demand simulators (SV1, DM1, TN1). Use GetDevice to retrieve provider capabilities, paradigm, queue state, native gate set, and topology for a single ARN; use SearchDevices to enumerate devices by status, provider, and type.\n\n\nContact Support:\n Name: AWS Support",
+      "type": "text/plain"
+    }
+  }
+}
