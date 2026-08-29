@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: AWS Braket Devices HybridJobs API
-  description: 'Discover quantum devices available on Amazon Braket — QPUs from AQT, IonQ, IQM, QuEra, and Rigetti, plus AWS-managed on-demand simulators (SV1, DM1, TN1). Use GetDevice to retrieve provider capabilities, paradigm, queue state, native gate set, and topology for a single ARN; use SearchDevices to enumerate devices by status, provider, and type.
+  title: AWS Braket Hybrid Jobs API
+  description: 'Run hybrid quantum-classical algorithms on Amazon Braket. A hybrid job couples a containerized Python algorithm running on ML-class EC2 instances with priority access to a QPU or on-demand simulator. The job orchestrates iterative variational workloads (VQE, QAOA, QML), persists checkpoints to S3, and exposes metrics through CloudWatch.
 
     '
   version: 2019-09-01
@@ -177,26 +177,8 @@ paths:
                     type: string
 components:
   responses:
-    DeviceOfflineException:
-      description: Device offline.
-      content:
-        application/json:
-          schema:
-            type: object
-    ThrottlingException:
-      description: Throttled.
-      content:
-        application/json:
-          schema:
-            type: object
-    AccessDeniedException:
-      description: Caller lacks the required IAM permission.
-      content:
-        application/json:
-          schema:
-            type: object
-    ServiceQuotaExceededException:
-      description: Quota or spending limit exceeded.
+    ValidationException:
+      description: Validation failed.
       content:
         application/json:
           schema:
@@ -207,8 +189,8 @@ components:
         application/json:
           schema:
             type: object
-    ValidationException:
-      description: Validation failed.
+    DeviceRetiredException:
+      description: Device retired.
       content:
         application/json:
           schema:
@@ -219,100 +201,31 @@ components:
         application/json:
           schema:
             type: object
-    DeviceRetiredException:
-      description: Device retired.
+    ThrottlingException:
+      description: Throttled.
+      content:
+        application/json:
+          schema:
+            type: object
+    ServiceQuotaExceededException:
+      description: Quota or spending limit exceeded.
+      content:
+        application/json:
+          schema:
+            type: object
+    DeviceOfflineException:
+      description: Device offline.
+      content:
+        application/json:
+          schema:
+            type: object
+    AccessDeniedException:
+      description: Caller lacks the required IAM permission.
       content:
         application/json:
           schema:
             type: object
   schemas:
-    Job:
-      type: object
-      properties:
-        jobArn:
-          type: string
-        jobName:
-          type: string
-        status:
-          type: string
-          enum:
-          - QUEUED
-          - RUNNING
-          - COMPLETED
-          - FAILED
-          - CANCELLING
-          - CANCELLED
-        deviceConfig:
-          type: object
-          properties:
-            device:
-              type: string
-        instanceConfig:
-          type: object
-          properties:
-            instanceType:
-              type: string
-            instanceCount:
-              type: integer
-            volumeSizeInGb:
-              type: integer
-        algorithmSpecification:
-          type: object
-        roleArn:
-          type: string
-        createdAt:
-          type: string
-          format: date-time
-        startedAt:
-          type: string
-          format: date-time
-        endedAt:
-          type: string
-          format: date-time
-        billableDuration:
-          type: integer
-          description: Billable seconds of instance time.
-        failureReason:
-          type: string
-        queueInfo:
-          type: object
-          properties:
-            queue:
-              type: string
-            position:
-              type: string
-        outputDataConfig:
-          type: object
-        checkpointConfig:
-          type: object
-        tags:
-          type: object
-          additionalProperties:
-            type: string
-    JobSummary:
-      type: object
-      properties:
-        jobArn:
-          type: string
-        jobName:
-          type: string
-        status:
-          type: string
-        device:
-          type: string
-        createdAt:
-          type: string
-          format: date-time
-        startedAt:
-          type: string
-          format: date-time
-        endedAt:
-          type: string
-          format: date-time
-        tags:
-          type: object
-          additionalProperties:
-            type: string
     CreateJobRequest:
       type: object
       required:
@@ -432,6 +345,93 @@ components:
             maxRuntimeInSeconds:
               type: integer
               minimum: 1
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+    Job:
+      type: object
+      properties:
+        jobArn:
+          type: string
+        jobName:
+          type: string
+        status:
+          type: string
+          enum:
+          - QUEUED
+          - RUNNING
+          - COMPLETED
+          - FAILED
+          - CANCELLING
+          - CANCELLED
+        deviceConfig:
+          type: object
+          properties:
+            device:
+              type: string
+        instanceConfig:
+          type: object
+          properties:
+            instanceType:
+              type: string
+            instanceCount:
+              type: integer
+            volumeSizeInGb:
+              type: integer
+        algorithmSpecification:
+          type: object
+        roleArn:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        startedAt:
+          type: string
+          format: date-time
+        endedAt:
+          type: string
+          format: date-time
+        billableDuration:
+          type: integer
+          description: Billable seconds of instance time.
+        failureReason:
+          type: string
+        queueInfo:
+          type: object
+          properties:
+            queue:
+              type: string
+            position:
+              type: string
+        outputDataConfig:
+          type: object
+        checkpointConfig:
+          type: object
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+    JobSummary:
+      type: object
+      properties:
+        jobArn:
+          type: string
+        jobName:
+          type: string
+        status:
+          type: string
+        device:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        startedAt:
+          type: string
+          format: date-time
+        endedAt:
+          type: string
+          format: date-time
         tags:
           type: object
           additionalProperties:

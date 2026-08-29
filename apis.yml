@@ -1,53 +1,6 @@
 aid: aws-braket
 url: https://raw.githubusercontent.com/api-evangelist/aws-braket/refs/heads/main/apis.yml
 apis:
-- aid: aws-braket:aws-braket-devices-api
-  name: AWS Braket Devices API
-  tags:
-  - Quantum Computing
-  - Devices
-  - QPU
-  - Simulator
-  - AWS
-  humanURL: https://docs.aws.amazon.com/braket/latest/APIReference/API_GetDevice.html
-  properties:
-  - url: https://docs.aws.amazon.com/braket/latest/APIReference/API_GetDevice.html
-    type: Documentation
-  - url: https://docs.aws.amazon.com/braket/latest/APIReference/API_SearchDevices.html
-    type: Documentation
-  - url: https://docs.aws.amazon.com/braket/latest/developerguide/braket-devices.html
-    type: Documentation
-  - url: openapi/aws-braket-devices-api-openapi.yml
-    type: OpenAPI
-  - url: json-schema/aws-braket-device-schema.json
-    type: JSONSchema
-  - url: examples/aws-braket-get-device-example.json
-    type: Examples
-  description: >-
-    Discover the QPU and simulator devices available on Amazon Braket. Returns device ARN, provider (AQT,
-    IonQ, IQM, QuEra, Rigetti, Amazon), status (ONLINE/OFFLINE/RETIRED), queue depth, paradigm (gate-based
-    or AHS), native gate set, and topology via deviceCapabilities.
-- aid: aws-braket:aws-braket-tags-api
-  name: AWS Braket Tags API
-  tags:
-  - Quantum Computing
-  - Tags
-  - FinOps
-  - AWS
-  humanURL: https://docs.aws.amazon.com/braket/latest/APIReference/API_ListTagsForResource.html
-  properties:
-  - url: https://docs.aws.amazon.com/braket/latest/APIReference/API_ListTagsForResource.html
-    type: Documentation
-  - url: https://docs.aws.amazon.com/braket/latest/APIReference/API_TagResource.html
-    type: Documentation
-  - url: https://docs.aws.amazon.com/braket/latest/APIReference/API_UntagResource.html
-    type: Documentation
-  - url: openapi/aws-braket-tags-api-openapi.yml
-    type: OpenAPI
-  description: >-
-    Tag quantum tasks, hybrid jobs, and spending limits for cost allocation, IAM ABAC, and resource organization.
-    Tags propagate to AWS Cost Explorer and AWS Budgets and can be referenced in IAM condition keys to
-    enforce fine-grained access controls.
 - aid: aws-braket:aws-braket-hybridjobs-api
   name: AWS Braket HybridJobs API
   description: Hybrid quantum-classical job orchestration.

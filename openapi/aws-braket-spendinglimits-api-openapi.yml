@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: AWS Braket Devices SpendingLimits API
-  description: 'Discover quantum devices available on Amazon Braket — QPUs from AQT, IonQ, IQM, QuEra, and Rigetti, plus AWS-managed on-demand simulators (SV1, DM1, TN1). Use GetDevice to retrieve provider capabilities, paradigm, queue state, native gate set, and topology for a single ARN; use SearchDevices to enumerate devices by status, provider, and type.
+  title: AWS Braket Spending Limits API
+  description: 'Create, update, search, and delete optional per-device spending limits for Amazon Braket QPUs. Spending limits are opt-in cost controls: when set, Amazon Braket validates each CreateQuantumTask request against the remaining budget and rejects tasks whose estimated cost would exceed the limit. Limits can be scoped to a time window. Spending limits apply only to on-demand and hybrid-job QPU tasks; they exclude simulator usage, notebooks, hybrid-job EC2 cost, and Braket Direct reservations.
 
     '
   version: 2019-09-01
