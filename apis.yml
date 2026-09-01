@@ -6,7 +6,7 @@ apis:
   description: Hybrid quantum-classical job orchestration.
   humanURL: https://docs.aws.amazon.com/braket/latest/APIReference/API_CreateQuantumTask.html
   tags:
-  - HybridJobs
+  - Hybrid Jobs
   tags_raw:
   - HybridJobs
   properties:
@@ -51,7 +51,7 @@ apis:
   description: Submit and manage quantum task executions on Amazon Braket devices.
   humanURL: https://docs.aws.amazon.com/braket/latest/APIReference/API_CreateQuantumTask.html
   tags:
-  - QuantumTasks
+  - Quantum Tasks
   tags_raw:
   - QuantumTasks
   properties:
@@ -96,7 +96,7 @@ apis:
   description: Per-device opt-in cost controls for QPU tasks.
   humanURL: https://docs.aws.amazon.com/braket/latest/APIReference/API_CreateQuantumTask.html
   tags:
-  - SpendingLimits
+  - Spending Limits
   tags_raw:
   - SpendingLimits
   properties:
