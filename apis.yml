@@ -352,3 +352,5 @@ maintainers:
     X: apievangelist
     url: https://apievangelist.com
 specificationVersion: '0.23'
+x-parent: aws
+x-relationship: product
