@@ -46,17 +46,15 @@ apis:
     url: https://docs.aws.amazon.com/braket/latest/APIReference/API_CreateSpendingLimit.html
   - type: Examples
     url: examples/aws-braket-create-spending-limit-example.json
-- aid: aws-braket:aws-braket-quantumtasks-api
-  name: AWS Braket QuantumTasks API
+- aid: aws-braket:aws-braket-quantum-tasks-api
+  name: AWS Braket Quantum Tasks API
   description: Submit and manage quantum task executions on Amazon Braket devices.
   humanURL: https://docs.aws.amazon.com/braket/latest/APIReference/API_CreateQuantumTask.html
   tags:
   - Quantum Tasks
-  tags_raw:
-  - QuantumTasks
   properties:
   - type: OpenAPI
-    url: openapi/aws-braket-quantumtasks-api-openapi.yml
+    url: openapi/aws-braket-quantum-tasks-api-openapi.yml
   - type: Documentation
     url: https://docs.aws.amazon.com/braket/latest/APIReference/API_CreateQuantumTask.html
   - type: Documentation
@@ -91,17 +89,15 @@ apis:
     url: https://docs.aws.amazon.com/braket/latest/APIReference/API_CreateSpendingLimit.html
   - type: Examples
     url: examples/aws-braket-create-spending-limit-example.json
-- aid: aws-braket:aws-braket-spendinglimits-api
-  name: AWS Braket SpendingLimits API
+- aid: aws-braket:aws-braket-spending-limits-api
+  name: AWS Braket Spending Limits API
   description: Per-device opt-in cost controls for QPU tasks.
   humanURL: https://docs.aws.amazon.com/braket/latest/APIReference/API_CreateQuantumTask.html
   tags:
   - Spending Limits
-  tags_raw:
-  - SpendingLimits
   properties:
   - type: OpenAPI
-    url: openapi/aws-braket-spendinglimits-api-openapi.yml
+    url: openapi/aws-braket-spending-limits-api-openapi.yml
   - type: Documentation
     url: https://docs.aws.amazon.com/braket/latest/APIReference/API_CreateQuantumTask.html
   - type: Documentation
