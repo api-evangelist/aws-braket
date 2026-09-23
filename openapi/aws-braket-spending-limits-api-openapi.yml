@@ -1,9 +1,7 @@
 openapi: 3.2.0
 info:
   title: AWS Braket Spending Limits API
-  description: 'Create, update, search, and delete optional per-device spending limits for Amazon Braket QPUs. Spending limits are opt-in cost controls: when set, Amazon Braket validates each CreateQuantumTask request against the remaining budget and rejects tasks whose estimated cost would exceed the limit. Limits can be scoped to a time window. Spending limits apply only to on-demand and hybrid-job QPU tasks; they exclude simulator usage, notebooks, hybrid-job EC2 cost, and Braket Direct reservations.
-
-    '
+  description: 'Create, update, search, and delete optional per-device spending limits for Amazon Braket QPUs. Spending limits are opt-in cost controls: when set, Amazon Braket validates each CreateQuantumTask request against the remaining budget and rejects tasks whose estimated cost would exceed the limit. Limits can be scoped to a time window. Spending limits apply only to on-demand and hybrid-job QPU tasks; they exclude simulator usage, notebooks, hybrid-job EC2 cost, and Braket Direct reservations.'
   version: 2019-09-01
   contact:
     name: AWS Support
@@ -18,18 +16,16 @@ servers:
 security:
 - SigV4: []
 tags:
-- name: SpendingLimits
+- name: Spending Limits
   description: Per-device opt-in cost controls for QPU tasks.
 paths:
   /spending-limit:
     post:
       summary: AWS Braket Create A Spending Limit
-      description: 'Create a new spending limit for a specified QPU device in the current region. Rejected if a limit already exists for the device.
-
-        '
+      description: Create a new spending limit for a specified QPU device in the current region. Rejected if a limit already exists for the device.
       operationId: createSpendingLimit
       tags:
-      - SpendingLimits
+      - Spending Limits
       requestBody:
         required: true
         content:
@@ -77,12 +73,10 @@ paths:
   /spending-limit/{spendingLimitArn}:
     put:
       summary: AWS Braket Update A Spending Limit
-      description: 'Update the maximum spend value and/or time period for an existing spending limit. Rejected if the sum of current spend and queued spend already exceeds the requested new maximum.
-
-        '
+      description: Update the maximum spend value and/or time period for an existing spending limit. Rejected if the sum of current spend and queued spend already exceeds the requested new maximum.
       operationId: updateSpendingLimit
       tags:
-      - SpendingLimits
+      - Spending Limits
       parameters:
       - name: spendingLimitArn
         in: path
@@ -115,7 +109,7 @@ paths:
       description: Delete the spending limit, removing all restrictions on the device.
       operationId: deleteSpendingLimit
       tags:
-      - SpendingLimits
+      - Spending Limits
       parameters:
       - name: spendingLimitArn
         in: path
@@ -131,7 +125,7 @@ paths:
       description: Search spending limits, typically filtered by deviceArn.
       operationId: searchSpendingLimits
       tags:
-      - SpendingLimits
+      - Spending Limits
       requestBody:
         required: true
         content:

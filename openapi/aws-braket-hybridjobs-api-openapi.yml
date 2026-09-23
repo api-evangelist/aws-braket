@@ -1,9 +1,7 @@
 openapi: 3.2.0
 info:
   title: AWS Braket Hybrid Jobs API
-  description: 'Run hybrid quantum-classical algorithms on Amazon Braket. A hybrid job couples a containerized Python algorithm running on ML-class EC2 instances with priority access to a QPU or on-demand simulator. The job orchestrates iterative variational workloads (VQE, QAOA, QML), persists checkpoints to S3, and exposes metrics through CloudWatch.
-
-    '
+  description: Run hybrid quantum-classical algorithms on Amazon Braket. A hybrid job couples a containerized Python algorithm running on ML-class EC2 instances with priority access to a QPU or on-demand simulator. The job orchestrates iterative variational workloads (VQE, QAOA, QML), persists checkpoints to S3, and exposes metrics through CloudWatch.
   version: 2019-09-01
   contact:
     name: AWS Support
@@ -24,9 +22,7 @@ paths:
   /job:
     post:
       summary: AWS Braket Create A Hybrid Job
-      description: 'Create a hybrid job that runs a containerized algorithm against a designated QPU or simulator. Specifies the container image (or script mode with an S3 entry point), the device, instance configuration (default ml.m5.xlarge), hyperparameters, input/output channels, IAM role, and stopping condition.
-
-        '
+      description: Create a hybrid job that runs a containerized algorithm against a designated QPU or simulator. Specifies the container image (or script mode with an S3 entry point), the device, instance configuration (default ml.m5.xlarge), hyperparameters, input/output channels, IAM role, and stopping condition.
       operationId: createJob
       tags:
       - HybridJobs
@@ -66,9 +62,7 @@ paths:
   /job/{jobArn}:
     get:
       summary: AWS Braket Get A Hybrid Job
-      description: 'Retrieve the status, device, instance config, and checkpoint metadata for a hybrid job.
-
-        '
+      description: Retrieve the status, device, instance config, and checkpoint metadata for a hybrid job.
       operationId: getJob
       tags:
       - HybridJobs
@@ -177,12 +171,6 @@ paths:
                     type: string
 components:
   responses:
-    ValidationException:
-      description: Validation failed.
-      content:
-        application/json:
-          schema:
-            type: object
     InternalServiceException:
       description: Unexpected error.
       content:
@@ -201,26 +189,32 @@ components:
         application/json:
           schema:
             type: object
-    ThrottlingException:
-      description: Throttled.
-      content:
-        application/json:
-          schema:
-            type: object
     ServiceQuotaExceededException:
       description: Quota or spending limit exceeded.
       content:
         application/json:
           schema:
             type: object
-    DeviceOfflineException:
-      description: Device offline.
+    ValidationException:
+      description: Validation failed.
       content:
         application/json:
           schema:
             type: object
     AccessDeniedException:
       description: Caller lacks the required IAM permission.
+      content:
+        application/json:
+          schema:
+            type: object
+    ThrottlingException:
+      description: Throttled.
+      content:
+        application/json:
+          schema:
+            type: object
+    DeviceOfflineException:
+      description: Device offline.
       content:
         application/json:
           schema:

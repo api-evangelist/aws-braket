@@ -10,7 +10,9 @@
     "aws-braket-quantumtasks-api-openapi.yml",
     "aws-braket-spendinglimits-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 2 superseded output(s) from the previous generation"
+  ],
   "errors": [
     "aws-braket-quantum-tasks-api-openapi.yml: dangling $ref: #/components/schemas/Error"
   ],
@@ -19,13 +21,13 @@
     "sourced from openapi/_original/ (3 archived document(s)); previously refined output at the top level was skipped rather than re-split",
     "aws-braket-hybrid-jobs-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "aws-braket-quantum-tasks-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "aws-braket-spending-limits-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0"
+    "aws-braket-spending-limits-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "superseded outputs removed: aws-braket-quantum-tasks-api-openapi.yml, aws-braket-spending-limits-api-openapi.yml",
+    "apis.yml register: written (+2 apis, 3 total)"
   ],
   "skipped": [
-    "aws-braket-devices-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "aws-braket-hybridjobs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "aws-braket-quantumtasks-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "aws-braket-spendinglimits-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "aws-braket-tags-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+    "aws-braket-quantum-tasks-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "aws-braket-spending-limits-api-openapi.yml: previously refined output, superseded by openapi/_original/"
   ]
 }
